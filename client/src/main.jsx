@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ffffff',
+      main: '#000000',
     },
     secondary: {
       main: '#000000',
@@ -16,12 +16,7 @@ const theme = createTheme({
     btn: {
       main: '#FF4E00',
     },
-    btnBlack: {
-      main: '#000000',
-    },
-    btnWhite: {
-      main: '#FFFFFF',
-    }
+
   },
   typography: {
     fontFamily: [

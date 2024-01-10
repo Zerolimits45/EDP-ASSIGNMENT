@@ -7,14 +7,20 @@ import SearchIcon from '@mui/icons-material/Search';
 
 function Categories() {
   //function
-  const ref = useRef(null);
+
   //style
   const paperStyle = { padding: 20, width: '60%', marginTop: 30, borderRadius: 10 }
   const searchbtnstyle = { backgroundColor: '#FF4E00', color: 'white', borderRadius: 17, alignItems: 'center', margin: 'auto', width: '30%', height: 50, marginLeft: '40px' }
-  const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white' }
+  const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white', marginLeft: '10px' }
+  
+  // Separate refs for each category
+  const dineRef = useRef(null);
+  const familyRef = useRef(null);
+  const sportsRef = useRef(null);
+  const hobbiesRef = useRef(null);
+  const travelRef = useRef(null);
 
-
-  const handleClick = () => {
+  const handleClick = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -37,27 +43,17 @@ function Categories() {
         </Paper>
       </Grid>
 
-      <Box sx={{ flexGrow: 1 }} display={'flex'} justifyContent='center' >
-
-        <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Dine & Wine</Button>
-
-
-        <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Family bonding</Button>
-
-
-        <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Sports & Adventure</Button>
-
-
-        <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Hobbies & Wellness</Button>
-
-
-        <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Travel</Button>
-
+      <Box sx={{ flexGrow: 1 }} display={'flex'} justifyContent='center' marginTop={3} >
+        <Button variant='contained' color='btn' style={btnstyle} onClick={() => handleClick(dineRef)}>Dine & Wine</Button>
+        <Button variant='contained' color='btn' style={btnstyle} onClick={() => handleClick(familyRef)}>Family bonding</Button>
+        <Button variant='contained' color='btn' style={btnstyle} onClick={() => handleClick(sportsRef)}>Sports & Adventure</Button>
+        <Button variant='contained' color='btn' style={btnstyle} onClick={() => handleClick(hobbiesRef)}>Hobbies & Wellness</Button>
+        <Button variant='contained' color='btn' style={btnstyle} onClick={() => handleClick(travelRef)}>Travel</Button>
       </Box>
 
       <Box>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}>
+        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={dineRef}>
           Dine & Wine
         </Typography>
 
@@ -86,7 +82,7 @@ function Categories() {
           </Grid>
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}>
+        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={familyRef}>
           Family bonding
         </Typography>
 
@@ -115,7 +111,7 @@ function Categories() {
           </Grid>
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}>
+        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={sportsRef}>
           Sports & Adventure
         </Typography>
 
@@ -144,7 +140,7 @@ function Categories() {
           </Grid>
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}>
+        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}  ref={hobbiesRef}>
           Hobbies & Wellness
         </Typography>
 
@@ -173,7 +169,7 @@ function Categories() {
           </Grid>
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold' }}>
+        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}  ref={travelRef}>
           Travel
         </Typography>
 
