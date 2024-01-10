@@ -21,6 +21,9 @@ const theme = createTheme({
     },
     btnWhite: {
       main: '#FFFFFF',
+    },
+    btnGreen: {
+      main: '#70B01F',
     }
   },
   typography: {
