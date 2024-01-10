@@ -33,7 +33,7 @@ function ContactUs() {
                 <Box display={'flex'} flexDirection={'column'}>
                     <Grid container spacing={15} marginTop={5} justifyContent="center">
                         <Grid item xs={12} md={4} >
-                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752' }} display={'flex'} flexDirection={'column'}>
+                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752', backgroundImage: 'url("../Images/hexagon.png")' }} display={'flex'} flexDirection={'column'}>
                                 <Box style={{ justifyContent: "center", paddingTop: 30 }} display={'flex'} >
                                     <img src="../images/ContactUsLogo1.png" style={{ width: '20%', borderRadius: '10px'}} />
                                 </Box>
@@ -52,7 +52,7 @@ function ContactUs() {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={4} >
-                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752'}} display={'flex'} flexDirection={'column'}>
+                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752', backgroundImage: 'url("../Images/hexagon.png")'}} display={'flex'} flexDirection={'column'}>
                                 <Box style={{ justifyContent: "center", paddingTop: 30 }} display={'flex'} >
                                     <img src="../images/ContactUsLogo2.png" style={{ width: '20%', borderRadius: '10px' }} />
                                 </Box>

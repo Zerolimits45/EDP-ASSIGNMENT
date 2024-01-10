@@ -16,8 +16,22 @@ const theme = createTheme({
     btn: {
       main: '#FF4E00',
     },
+    btnBlack: {
+      main: '#000000',
+    },
+    btnWhite: {
+      main: '#FFFFFF',
+    },
+    btnGreen: {
+      main: '#70B01F',
+    },
+    btnYellow: {
+      main: '#F7A506',
+    },
+    
 
   },
+  
   typography: {
     fontFamily: [
       'Montserrat',
