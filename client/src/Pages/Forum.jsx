@@ -4,6 +4,11 @@ import { MarginTwoTone } from '@mui/icons-material'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Forum() {
+    const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white', marginLeft: 50}
+
+    const handleClick = () => {
+        
+      };
     return (
         <Container maxWidth="x1">
             <Box style={{ backgroundColor: '#DBDBDB', backgroundSize: 'cover', borderRadius: 15, maxWidth: 1200, height: 500, margin: '50px auto' }} display={'flex'} flexDirection={'column'}>
@@ -18,8 +23,8 @@ function Forum() {
                         </Typography>
                         <Typography variant="h6" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "black" }}>
                         </Typography> {/* paddingbottom for button (temporary) */}
-                        <Link to="" style={{textDecoration: 'none'}}>
-                            <Button variant="contained" color="btnGreen" style={{marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15 }}>
+                        <Link to="/addpost" style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" color="btnGreen" style={{ marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15 }}>
                                 Start your own Discussion
                             </Button>
                         </Link>
@@ -29,6 +34,18 @@ function Forum() {
 
                     </Grid>
                 </Grid>
+            </Box>
+            <Box sx={{ flexGrow: 1 }} display={'flex'} justifyContent='center' >
+
+                <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>All</Button>
+
+
+                <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Community Posts</Button>
+
+
+                <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Official Posts</Button>
+
+
             </Box>
         </Container>
     )

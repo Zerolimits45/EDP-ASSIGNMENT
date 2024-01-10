@@ -13,9 +13,11 @@ import AboutUs from './Pages/AboutUs';
 import ContactUs from './Pages/ContactUs';
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
+import AddPost from './Pages/AddPost';
 
 // Import components
 import Navbar from './Components/Navbar';
+
 
 
 
@@ -34,6 +36,7 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/addpost" element={<AddPost />} />
       </Routes>
     </>
   );
