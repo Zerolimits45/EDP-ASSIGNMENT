@@ -15,6 +15,8 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import AddPost from './Pages/AddPost';
 
+
+
 // Import components
 import Navbar from './Components/Navbar';
 
@@ -37,6 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/addpost" element={<AddPost />} />
+
       </Routes>
     </>
   );
