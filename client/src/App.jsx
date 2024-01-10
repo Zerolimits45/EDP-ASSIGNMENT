@@ -16,6 +16,7 @@ import Signup from './Pages/Signup';
 import AddPost from './Pages/AddPost';
 import EditPost from './Pages/EditPost';
 import Description from './Pages/Description';
+import MerchantLogin from './Pages/MerchantLogin';
 
 
 // Import components
@@ -42,6 +43,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
         <Route path="/editpost" element={<EditPost />} />
+        <Route path="/merchantlogin" element={<MerchantLogin />} />
+
 
       </Routes>
     </>
