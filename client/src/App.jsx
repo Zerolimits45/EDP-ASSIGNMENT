@@ -11,9 +11,11 @@ import Forum from './Pages/Forum';
 import Memberships from './Pages/Memberships';
 import AboutUs from './Pages/AboutUs';
 import ContactUs from './Pages/ContactUs';
+import Login from './Pages/Login';
 
 // Import components
 import Navbar from './Components/Navbar';
+
 
 
 
@@ -29,6 +31,7 @@ function App() {
         <Route path="/memberships" element={<Memberships />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
