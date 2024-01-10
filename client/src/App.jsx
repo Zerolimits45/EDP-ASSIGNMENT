@@ -14,7 +14,7 @@ import ContactUs from './Pages/ContactUs';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import AddPost from './Pages/AddPost';
-
+import EditPost from './Pages/EditPost';
 
 
 // Import components
@@ -39,6 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
+        <Route path="/editpost" element={<EditPost />} />
 
       </Routes>
     </>
