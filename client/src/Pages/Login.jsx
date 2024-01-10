@@ -17,9 +17,11 @@ function SignIn() {
                     <Typography variant="body1" align="center" gutterBottom fontWeight={'bold'} >
                         Create an account to get started!
                     </Typography>
+                    <Link to='/signup'>
                     <Button variant='contained' color='btn' style={btnstyle} fullWidth>
                         Sign Up
                     </Button>
+                    </Link>
                 </Paper>
 
                 <Paper elevation={3} sx={{ padding: '2rem', maxWidth: '400px' }}>
@@ -45,7 +47,7 @@ function SignIn() {
                             </Grid>
                             <Grid item xs={12}>
                                 <Button variant="contained" fullWidth style={loginbtnstyle}>
-                                    Sign In
+                                     Login
                                 </Button>
                             </Grid>
                         </Grid>
