@@ -7,10 +7,17 @@ import './App.css';
 // Import pages
 import Home from './Pages/Home';
 import Categories from './Pages/Categories';
-
+import Forum from './Pages/Forum';
+import Memberships from './Pages/Memberships';
+import AboutUs from './Pages/AboutUs';
+import ContactUs from './Pages/ContactUs';
+import Login from './Pages/Login';
 
 // Import components
 import Navbar from './Components/Navbar';
+
+
+
 
 function App() {
   return (
@@ -20,6 +27,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/forum" element={<Forum />} /> 
+        <Route path="/memberships" element={<Memberships />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );
