@@ -1,5 +1,6 @@
 import { React, useRef } from 'react'
 import { Grid, Paper, Typography, TextField, Button, Box, Container, Card, CardContent } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 
 // import icons
@@ -12,7 +13,7 @@ function Categories() {
   const paperStyle = { padding: 20, width: '60%', marginTop: 30, borderRadius: 10 }
   const searchbtnstyle = { backgroundColor: '#FF4E00', color: 'white', borderRadius: 17, alignItems: 'center', margin: 'auto', width: '30%', height: 50, marginLeft: '40px' }
   const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white', marginLeft: '10px' }
-  
+
   // Separate refs for each category
   const dineRef = useRef(null);
   const familyRef = useRef(null);
@@ -75,7 +76,9 @@ function Categories() {
                   <Typography style={{ flexGrow: 1 }}>
                     $45
                   </Typography>
-                  <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+                  <Link to='/description'>
+                    <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+                  </Link>
                 </Box>
               </CardContent>
             </Card>
@@ -104,7 +107,11 @@ function Categories() {
                   <Typography style={{ flexGrow: 1 }}>
                     $45
                   </Typography>
-                  <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+
+                  <Link to='/description'>
+                    <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+                  </Link>
+
                 </Box>
               </CardContent>
             </Card>
@@ -140,7 +147,7 @@ function Categories() {
           </Grid>
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}  ref={hobbiesRef}>
+        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={hobbiesRef}>
           Hobbies & Wellness
         </Typography>
 
@@ -169,7 +176,7 @@ function Categories() {
           </Grid>
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}  ref={travelRef}>
+        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={travelRef}>
           Travel
         </Typography>
 

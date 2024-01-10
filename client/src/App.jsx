@@ -15,6 +15,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import AddPost from './Pages/AddPost';
 import EditPost from './Pages/EditPost';
+import Description from './Pages/Description';
 
 
 // Import components
