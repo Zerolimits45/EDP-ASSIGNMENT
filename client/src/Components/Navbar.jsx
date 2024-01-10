@@ -9,7 +9,7 @@ import { AccountCircle } from '@mui/icons-material';
 function Navbar() {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" elevation={0}>
+            <AppBar position="static" elevation={0} style={{backgroundColor: 'white', color: 'black'}}>
                 <Toolbar>
                     <IconButton
                         size="large"
