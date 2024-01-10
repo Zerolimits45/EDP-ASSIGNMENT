@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Box, Paper, Grid, Typography, Button, Divider, Card, CardContent,TextField } from '@mui/material'
+import { Container, Box, Paper, Grid, Typography, Button, Divider, Card, CardContent, TextField } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 
 function SignIn() {
@@ -9,8 +9,8 @@ function SignIn() {
 
     return (
         <Container maxWidth="xl">
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh' }}>
-                <Paper elevation={3} sx={{ padding: '2rem', maxWidth: '400px', height: '284px', backgroundImage: 'url("../Images/background 2.png")', backgroundSize: 'cover' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
+                <Paper elevation={3} sx={{ padding: '2rem', maxWidth: '400px', height: '354px', backgroundImage: 'url("../Images/background 2.png")', backgroundSize: 'cover' }}>
                     <Typography variant="h5" align="center" gutterBottom fontWeight={'bold'}>
                         New Here?
                     </Typography>
@@ -18,9 +18,9 @@ function SignIn() {
                         Create an account to get started!
                     </Typography>
                     <Link to='/signup'>
-                    <Button variant='contained' color='btn' style={btnstyle} fullWidth>
-                        Sign Up
-                    </Button>
+                        <Button variant='contained' color='btn' style={btnstyle} fullWidth>
+                            Sign Up
+                        </Button>
                     </Link>
                 </Paper>
 
@@ -47,13 +47,19 @@ function SignIn() {
                             </Grid>
                             <Grid item xs={12}>
                                 <Button variant="contained" fullWidth style={loginbtnstyle}>
-                                     Login
+                                    Login
                                 </Button>
                             </Grid>
                         </Grid>
                         <Typography marginTop={'15px'}>
                             Forgot password ?
                         </Typography>
+                        <Divider sx={{ margin: '1rem 0' }} />
+                        <Link to='/merchantlogin'>
+                        <Button variant="contained" fullWidth style={loginbtnstyle}>
+                            Merchant Login
+                        </Button>
+                        </Link>
                     </Box>
                 </Paper>
             </Box>
