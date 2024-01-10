@@ -1,9 +1,9 @@
 import React from 'react'
+import { Container, Box, Paper, Grid, Typography, Button, Divider, Card, CardContent } from '@mui/material'
 
-function Signup() {
-  return (
-    <div>Signup</div>
-  )
+function SignUp(){
+    return(
+        <div>Register</div>
+    )
 }
-
-export default Signup
+export default SignUp
