@@ -29,8 +29,9 @@ function ContactUs() {
                 <Box display={'flex'} flexDirection={'column'}>
                     <Grid container spacing={15} marginTop={5} justifyContent="center">
                         <Grid item xs={12} md={4} >
-                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752' }} display={'flex'} flexDirection={'column'}>
-                                <Typography variant="h5" style={{ textAlign: "center", fontWeight: "bold", paddingTop: 60, color: "white" }}>
+                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752'}} display={'flex'} flexDirection={'column'}>
+                                <img src="../images/ContactUsLogo1.png" style={{ width: '20%', borderRadius: '10px', paddingLeft }} />
+                                <Typography variant="h5" style={{ textAlign: "center", fontWeight: "bold", paddingTop: 60, color: "white",  paddingLeft: 20, paddingRight: 20, }}>
                                     Talk to a member of our Sales team
                                 </Typography>
                                 <Typography variant="h7" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "white" }}>
