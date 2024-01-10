@@ -15,6 +15,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import AddPost from './Pages/AddPost';
 import EditPost from './Pages/EditPost';
+import Description from './Pages/Description';
 
 
 // Import components
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/description" element={<Description />} />
         <Route path="/forum" element={<Forum />} /> 
         <Route path="/memberships" element={<Memberships />} />
         <Route path="/aboutus" element={<AboutUs />} />
