@@ -12,7 +12,7 @@ import Memberships from './Pages/Memberships';
 import AboutUs from './Pages/AboutUs';
 import ContactUs from './Pages/ContactUs';
 import Login from './Pages/Login';
-import SignUp from './Pages/Signup';
+import Signup from './Pages/Signup';
 import AddPost from './Pages/AddPost';
 
 
@@ -37,7 +37,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
 
       </Routes>
