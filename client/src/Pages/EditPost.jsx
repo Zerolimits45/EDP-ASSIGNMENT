@@ -37,7 +37,7 @@ function EditPost() {
             <Grid container justifyContent='center' spacing={4}>
                 <Grid item xs={6}>
                     <Typography variant="h4" style={{ textAlign: "left", fontWeight: "bold", paddingTop: 100, paddingBottom: 50, fontSize: '50px' }}>
-                        Start your Discussions
+                        Edit Your Posts
                     </Typography>
                     <Box component="form" onSubmit={formik.handleSubmit}>
                         <Grid container justifyContent='center' spacing={2} direction="column">
