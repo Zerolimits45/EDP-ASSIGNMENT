@@ -12,7 +12,7 @@ import Memberships from './Pages/Memberships';
 import AboutUs from './Pages/AboutUs';
 import ContactUs from './Pages/ContactUs';
 import Login from './Pages/Login';
-import SignUp from './Pages/SignUp';
+import SignUp from './Pages/Signup';
 import AddPost from './Pages/AddPost';
 
 
