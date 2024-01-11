@@ -44,7 +44,9 @@ function Signup() {
                             formikErrors[lowercaseField] = errorMessages[field];
                         }
                         formik.setErrors(formikErrors);
-                        formik.setErrors({email: error.response.data.message})
+
+                        console.log(formikErrors)
+                        console.log(error.response.data.message)
                     }
                 })
                 
