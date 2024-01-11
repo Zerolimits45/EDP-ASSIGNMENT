@@ -51,17 +51,17 @@ function Profile() {
                         <Grid item xs={12} md={6}>
                             <Typography variant="h5" style={accountTitle} marginTop={2} marginBottom={2}>
                                 Email:
-                                <Typography variant="h6" style={accountText}>
-                                    {user.email}
-                                </Typography>
+                            </Typography>
+                            <Typography variant="h6" style={accountText}>
+                                {user.email}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Typography variant="h5" style={accountTitle} marginTop={2} marginBottom={2}>
                                 Phone number:
-                                <Typography variant="h6" style={accountText}>
-                                    {user.contact}
-                                </Typography>
+                            </Typography>
+                            <Typography variant="h6" style={accountText}>
+                                {user.contact}
                             </Typography>
                         </Grid>
                     </Grid>

@@ -99,7 +99,7 @@ function ProfileEdit() {
                                     onChange={formik.handleChange}
                                     error={formik.touched.contact && Boolean(formik.errors.contact)}
                                     helperText={formik.touched.contact && formik.errors.contact}
-                                    fullwidth
+                                    fullWidth
                                 />
                             </Grid>
                         </Grid>
