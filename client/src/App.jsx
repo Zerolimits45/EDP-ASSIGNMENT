@@ -20,11 +20,12 @@ import EditPost from './Pages/EditPost';
 import Description from './Pages/Description';
 import MerchantLogin from './Pages/MerchantLogin';
 import RaisedRequest from './Pages/RaisedRequest';
-import ViewPost from './Pages/ViewPost.jsx';
-import Cart from './Pages/Cart.jsx';
+import ViewPost from './Pages/ViewPost';
+import Cart from './Pages/Cart';
 
 //Other routes
 import ProfileRoutes from './Pages/Profile/ProfileRoutes';
+import MerchantRoutes from './Pages/Merchant/MerchantRoutes';
 
 // Import components
 import Navbar from './Components/Navbar';
@@ -63,6 +64,7 @@ function App() {
         )}
 
         <Route path="/profile/*" element={<ProfileRoutes />} />
+        <Route path="/merchant/*" element={<MerchantRoutes />} />
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />

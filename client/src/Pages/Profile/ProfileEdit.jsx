@@ -70,7 +70,6 @@ function ProfileEdit() {
                                 <TextField
                                     label="Name"
                                     name="name"
-                                    placeholder='Name'
                                     value={formik.values.name}
                                     onChange={formik.handleChange}
                                     error={formik.touched.name && Boolean(formik.errors.name)}
@@ -82,7 +81,6 @@ function ProfileEdit() {
                                 <TextField
                                     label="Email"
                                     name="email"
-                                    placeholder='Email'
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
                                     error={formik.touched.email && Boolean(formik.errors.email)}
@@ -94,7 +92,6 @@ function ProfileEdit() {
                                 <TextField
                                     label="Phone"
                                     name="contact"
-                                    placeholder='Phone'
                                     value={formik.values.contact}
                                     onChange={formik.handleChange}
                                     error={formik.touched.contact && Boolean(formik.errors.contact)}
