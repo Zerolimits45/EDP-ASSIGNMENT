@@ -7,7 +7,7 @@ function Purchases() {
 
   return (
     <Container maxWidth="xl" >
-      <Typography variant="h4" style={textstyle} marginBottom={2}>
+      <Typography variant="h4" marginBottom={2}>
         Purchases
       </Typography>
     </Container>
