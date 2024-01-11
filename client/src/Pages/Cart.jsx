@@ -1,5 +1,10 @@
 import React from 'react'
 import { Container, Box, Paper, Grid, Typography, Button, Divider, Card, CardContent } from '@mui/material'
+import { Dropdown } from '@mui/base/Dropdown';
+import { MenuButton } from '@mui/base/MenuButton';
+import { Menu } from '@mui/base/Menu';
+import { MenuItem } from '@mui/base/MenuItem'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Cart() {
     return (
@@ -33,8 +38,8 @@ function Cart() {
                         </Grid>
                     </Box>
                 </Box>
-                <Box border={1} borderRadius={3} marginTop={15} width={632}marginLeft={20}>
-                    <Box border={0} height={64} width={632} style={{ backgroundColor: '#000000', borderTop }}>
+                <Box border={1} marginTop={15} width={632} marginLeft={20}>
+                    <Box border={0} height={64} width={632} style={{ backgroundColor: '#000000', }}>
                         <Typography variant="h6" style={{ textAlign: "left", paddingTop: 15, paddingLeft: 20, fontWeight: 'bold', color: 'white' }}>Order Summary</Typography>
                     </Box>
                     <Box border={0}>
@@ -48,8 +53,14 @@ function Cart() {
                             <Typography variant="h6" style={{ textAlign: "right", paddingTop: 15, paddingRight: 20, }}>$120.00</Typography>
                         </Grid>
                     </Grid>
-                    
                 </Box>
+            </Box>
+            <Box maxWidth={110} marginLeft={159} marginTop={10}>
+                <Link to="" style={{ textDecoration: 'none' }}>
+                    <Button variant="contained" color='btnGreen' style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
+                        Checkout
+                    </Button>
+                </Link>
             </Box>
         </Container>
     )
