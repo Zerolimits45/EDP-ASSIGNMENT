@@ -1,7 +1,7 @@
-import { React, useRef } from 'react'
+import { React, useRef, useState, useEffect } from 'react'
 import { Grid, Paper, Typography, TextField, Button, Box, Container, Card, CardContent } from '@mui/material'
 import { Link } from 'react-router-dom'
-
+import http from '../http.js';
 
 // import icons
 import SearchIcon from '@mui/icons-material/Search';
@@ -24,6 +24,14 @@ function Categories() {
   const handleClick = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const [eventList, setEventList] = useState([]);
+  useEffect(() => {
+    http.get('/Event').then((res) => {
+      setEventList(res.data);
+      console.log(res.data)
+    })
+  }, [])
 
   return (
     <Container maxWidth='xl'>
@@ -59,30 +67,35 @@ function Categories() {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} xl={4}>
-            <Card elevation={5} style={paperStyle}>
-              <CardContent>
-                <Box component="img" width="100%"
-                  src="../images/test.png"
-                  alt="car image">
-                </Box>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Activity Title
-                </Typography>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Timing?
-                </Typography>
-                <Box display={'flex'}>
-                  <Typography style={{ flexGrow: 1 }}>
-                    $45
-                  </Typography>
-                  <Link to='/description'>
-                    <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
-                  </Link>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
+          {eventList
+            .filter((event) => event.category == 'Dine and Wine')
+            .map((event) =>
+              <Grid item xs={12} md={6} xl={4}>
+
+                <Card elevation={5} style={paperStyle}>
+                  <CardContent>
+                    <Box component="img" width="100%"
+                      src="../images/test.png"
+                      alt="car image">
+                    </Box>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {event.title}
+                    </Typography>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {new Date(event.startDate).toLocaleDateString()} - {new Date(event.endDate).toLocaleDateString()}
+                    </Typography>
+                    <Box display={'flex'}>
+                      <Typography style={{ flexGrow: 1 }}>
+                        ${event.price}
+                      </Typography>
+                      <Link to={`/description/${event.id}`}>
+                        <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+                      </Link>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            )}
         </Grid>
 
         <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={familyRef}>

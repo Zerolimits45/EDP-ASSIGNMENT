@@ -50,7 +50,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/description" element={<Description />} />
+        <Route path="/description/:id" element={<Description />} />
         <Route path="/forum" element={<Forum />} /> 
         <Route path="/memberships" element={<Memberships />} />
         <Route path="/aboutus" element={<AboutUs />} />
@@ -63,7 +63,7 @@ function App() {
         <Route path="/editpost" element={<EditPost />} />
         <Route path="/merchantlogin" element={<MerchantLogin />} />
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
-        <Route path="/forum/viewpost/:id/:id" element={<ViewPost />} />
+        <Route path="/forum/viewpost/:id" element={<ViewPost />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />} />
 
