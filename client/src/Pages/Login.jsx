@@ -84,7 +84,6 @@ function SignIn() {
                                     value={formik.values.email}
                                     error={formik.touched.email && Boolean(formik.errors.email)}
                                     helperText={formik.touched.email && formik.errors.email}
-                                    placeholder='Enter Email'
                                     fullWidth
                                 />
                             </Grid>
@@ -96,7 +95,6 @@ function SignIn() {
                                     value={formik.values.password}
                                     error={formik.touched.password && Boolean(formik.errors.password)}
                                     helperText={formik.touched.password && formik.errors.password}
-                                    placeholder='Enter Password'
                                     fullWidth
                                 />
                             </Grid>
