@@ -32,7 +32,7 @@ function Navbar() {
 
 
                     <Box marginLeft={"1rem"} display={["none", "none", "flex"]} sx={{ flexGrow: 1 }}>
-                        <img src="./Images/logo_uplay.png" alt="logo" style={{ height: "30px", width: "90px" }} />
+                        <img src="../../Images/logo_uplay.png" alt="logo" style={{ height: "30px", width: "90px" }} />
                         <Button color="inherit" LinkComponent={Link} to='/' sx={{ fontWeight: 'bold' }}>Home</Button>
                         <Button color="inherit" LinkComponent={Link} to='/categories' sx={{ fontWeight: 'bold' }}>Categories</Button>
                         <Button color="inherit" LinkComponent={Link} to='/memberships' sx={{ fontWeight: 'bold' }}>Memberships</Button>
@@ -46,7 +46,7 @@ function Navbar() {
                         {user && (
                             <>
                                 <AccountCircle style={{ color: 'black' }} />
-                                <Button color="inherit" LinkComponent={Link} to={`/profile/account`}>{user.name}</Button>
+                                <Button color="inherit" sx={{ fontWeight: 'bold' }} LinkComponent={Link} to={`/profile/profile`}>{user.name}</Button>
                                 <Button onClick={logout} color="inherit" sx={{ fontWeight: 'bold' }}>Logout</Button>
                             </>
                         )}
