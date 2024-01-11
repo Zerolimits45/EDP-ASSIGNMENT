@@ -22,6 +22,7 @@ import MerchantLogin from './Pages/MerchantLogin';
 import RaisedRequest from './Pages/RaisedRequest';
 import ViewPost from './Pages/ViewPost.jsx';
 import Cart from './Pages/Cart.jsx';
+import Profile from './Pages/Profile.jsx';
 
 // Import components
 import Navbar from './Components/Navbar';
@@ -64,6 +65,7 @@ function App() {
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
         <Route path="/forum/viewpost" element={<ViewPost />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/profile" element={<Profile />} />
 
       </Routes>
     </UserContext.Provider>
