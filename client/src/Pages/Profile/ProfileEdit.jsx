@@ -7,7 +7,7 @@ function ProfileEdit() {
 
   return (
     <Container maxWidth='xl'>
-            <Typography variant='h6' color="#000000" marginBottom={2}>
+            <Typography variant='h4' color="#000000" marginBottom={2}>
                 Edit your details
             </Typography>
             <Box>
