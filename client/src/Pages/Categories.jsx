@@ -103,32 +103,35 @@ function Categories() {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} xl={4}>
-            <Card elevation={5} style={paperStyle}>
-              <CardContent>
-                <Box component="img" width="100%"
-                  src="../images/test.png"
-                  alt="car image">
-                </Box>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Activity Title
-                </Typography>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Timing?
-                </Typography>
-                <Box display={'flex'}>
-                  <Typography style={{ flexGrow: 1 }}>
-                    $45
-                  </Typography>
+          {eventList
+            .filter((event) => event.category == 'Family bonding')
+            .map((event) =>
+              <Grid item xs={12} md={6} xl={4}>
 
-                  <Link to='/description'>
-                    <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
-                  </Link>
-
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
+                <Card elevation={5} style={paperStyle}>
+                  <CardContent>
+                    <Box component="img" width="100%"
+                      src="../images/test.png"
+                      alt="car image">
+                    </Box>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {event.title}
+                    </Typography>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {new Date(event.startDate).toLocaleDateString()} - {new Date(event.endDate).toLocaleDateString()}
+                    </Typography>
+                    <Box display={'flex'}>
+                      <Typography style={{ flexGrow: 1 }}>
+                        ${event.price}
+                      </Typography>
+                      <Link to={`/description/${event.id}`}>
+                        <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+                      </Link>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            )}
         </Grid>
 
         <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={sportsRef}>
@@ -136,28 +139,35 @@ function Categories() {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} xl={4}>
-            <Card elevation={5} style={paperStyle}>
-              <CardContent>
-                <Box component="img" width="100%"
-                  src="../images/test.png"
-                  alt="car image">
-                </Box>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Activity Title
-                </Typography>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Timing?
-                </Typography>
-                <Box display={'flex'}>
-                  <Typography style={{ flexGrow: 1 }}>
-                    $45
-                  </Typography>
-                  <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
+          {eventList
+            .filter((event) => event.category == 'Sports & Adventure')
+            .map((event) =>
+              <Grid item xs={12} md={6} xl={4}>
+
+                <Card elevation={5} style={paperStyle}>
+                  <CardContent>
+                    <Box component="img" width="100%"
+                      src="../images/test.png"
+                      alt="car image">
+                    </Box>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {event.title}
+                    </Typography>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {new Date(event.startDate).toLocaleDateString()} - {new Date(event.endDate).toLocaleDateString()}
+                    </Typography>
+                    <Box display={'flex'}>
+                      <Typography style={{ flexGrow: 1 }}>
+                        ${event.price}
+                      </Typography>
+                      <Link to={`/description/${event.id}`}>
+                        <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+                      </Link>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            )}
         </Grid>
 
         <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={hobbiesRef}>
@@ -165,28 +175,35 @@ function Categories() {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} xl={4}>
-            <Card elevation={5} style={paperStyle}>
-              <CardContent>
-                <Box component="img" width="100%"
-                  src="../images/test.png"
-                  alt="car image">
-                </Box>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Activity Title
-                </Typography>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Timing?
-                </Typography>
-                <Box display={'flex'}>
-                  <Typography style={{ flexGrow: 1 }}>
-                    $45
-                  </Typography>
-                  <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
+          {eventList
+            .filter((event) => event.category == 'Hobbies & Wellness')
+            .map((event) =>
+              <Grid item xs={12} md={6} xl={4}>
+
+                <Card elevation={5} style={paperStyle}>
+                  <CardContent>
+                    <Box component="img" width="100%"
+                      src="../images/test.png"
+                      alt="car image">
+                    </Box>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {event.title}
+                    </Typography>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {new Date(event.startDate).toLocaleDateString()} - {new Date(event.endDate).toLocaleDateString()}
+                    </Typography>
+                    <Box display={'flex'}>
+                      <Typography style={{ flexGrow: 1 }}>
+                        ${event.price}
+                      </Typography>
+                      <Link to={`/description/${event.id}`}>
+                        <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+                      </Link>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            )}
         </Grid>
 
         <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={travelRef}>
@@ -194,28 +211,35 @@ function Categories() {
         </Typography>
 
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} xl={4}>
-            <Card elevation={5} style={paperStyle}>
-              <CardContent>
-                <Box component="img" width="100%"
-                  src="../images/test.png"
-                  alt="car image">
-                </Box>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Activity Title
-                </Typography>
-                <Typography style={{ fontWeight: 'bold' }}>
-                  Timing?
-                </Typography>
-                <Box display={'flex'}>
-                  <Typography style={{ flexGrow: 1 }}>
-                    $45
-                  </Typography>
-                  <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
+          {eventList
+            .filter((event) => event.category == 'Travel')
+            .map((event) =>
+              <Grid item xs={12} md={6} xl={4}>
+
+                <Card elevation={5} style={paperStyle}>
+                  <CardContent>
+                    <Box component="img" width="100%"
+                      src="../images/test.png"
+                      alt="car image">
+                    </Box>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {event.title}
+                    </Typography>
+                    <Typography style={{ fontWeight: 'bold' }}>
+                      {new Date(event.startDate).toLocaleDateString()} - {new Date(event.endDate).toLocaleDateString()}
+                    </Typography>
+                    <Box display={'flex'}>
+                      <Typography style={{ flexGrow: 1 }}>
+                        ${event.price}
+                      </Typography>
+                      <Link to={`/description/${event.id}`}>
+                        <Button variant='contained' color='btn' style={btnstyle}>View More</Button>
+                      </Link>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Grid>
+            )}
         </Grid>
 
       </Box>

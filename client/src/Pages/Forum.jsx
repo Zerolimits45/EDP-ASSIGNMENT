@@ -8,19 +8,19 @@ import UserContext from '../contexts/UserContext.js';
 function Forum() {
     const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white', marginLeft: 50 }
 
-
+    const [role, setRole] = useState('');
     const { user } = useContext(UserContext);
 
     const [postList, setPostList] = useState([]);
     useEffect(() => {
-        http.get('/Post/All').then((res) => {
+        http.get(`/Post/All/?role=${role}`).then((res) => {
             setPostList(res.data);
             console.log(res.data)
         })
-    }, [])
+    }, [role])
 
-    const handleClick = () => {
-
+    const handleClick = (clickedRole) => {
+        setRole(clickedRole)
     };
     return (
         <Container maxWidth="x1">
@@ -58,13 +58,13 @@ function Forum() {
             </Box>
             <Box sx={{ flexGrow: 1 }} display={'flex'} justifyContent='center' >
 
-                <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>All</Button>
+                <Button variant='contained' color='btn' style={btnstyle} onClick={() => handleClick('')}>All</Button>
 
 
-                <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Community Posts</Button>
+                <Button variant='contained' color='btn' style={btnstyle} onClick={() => handleClick('Customer')}>Community Posts</Button>
 
 
-                <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Official Posts</Button>
+                <Button variant='contained' color='btn' style={btnstyle} onClick={() => handleClick('Admin')}>Official Posts</Button>
 
             </Box>
             <Box style={{ backgroundSize: 'cover', borderRadius: 15, maxWidth: 1200, margin: '50px auto' }} display={'flex'} flexDirection={'column'}>
