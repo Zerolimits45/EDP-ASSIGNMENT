@@ -17,13 +17,10 @@ import AddPost from './Pages/AddPost';
 import EditPost from './Pages/EditPost';
 import Description from './Pages/Description';
 import MerchantLogin from './Pages/MerchantLogin';
-
+import FeedbackForm from './Pages/FeedbackForm';
 
 // Import components
 import Navbar from './Components/Navbar';
-
-
-
 
 
 function App() {
@@ -44,6 +41,7 @@ function App() {
         <Route path="/addpost" element={<AddPost />} />
         <Route path="/editpost" element={<EditPost />} />
         <Route path="/merchantlogin" element={<MerchantLogin />} />
+        <Route path="/contactus/feedbackform" element={<FeedbackForm />} />
 
 
       </Routes>
