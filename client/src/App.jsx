@@ -23,6 +23,7 @@ import RaisedRequest from './Pages/RaisedRequest';
 import ViewPost from './Pages/ViewPost.jsx';
 import Cart from './Pages/Cart.jsx';
 
+
 //Other routes
 import ProfileRoutes from './Pages/Profile/ProfileRoutes.jsx';
 
@@ -71,6 +72,7 @@ function App() {
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
         <Route path="/forum/viewpost/:id" element={<ViewPost />} />
         <Route path="/cart" element={<Cart />} />
+
 
       </Routes>
     </UserContext.Provider>
