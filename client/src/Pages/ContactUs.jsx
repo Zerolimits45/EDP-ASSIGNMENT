@@ -45,9 +45,11 @@ function ContactUs() {
                                     You can raise a request to our sales team about any enquires
                                     and we will get back to you as soon as possible
                                 </Typography>
-                                <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
-                                    Book Now
-                                </Button>
+                                <Link to="/contactus/raisedrequest" style={{ textDecoration: 'none' }}>
+                                    <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
+                                        Send an Enquiry
+                                    </Button>
+                                </Link>
                                 <Typography variant="h6" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "white" }}>
                                 </Typography> {/* paddingbottom for button (temporary) */}
                             </Box>
@@ -64,7 +66,7 @@ function ContactUs() {
                                     Chat with Annie to get frequently asked questions
                                 </Typography>
                                 <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
-                                    Book Now
+                                    Chat with Annie
                                 </Button>
                                 <Typography variant="h6" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "white" }}>
                                 </Typography> {/* paddingbottom for button (temporary) */}
@@ -83,11 +85,9 @@ function ContactUs() {
                                     You can raise a request to our sales team about any enquires
                                     and we will get back to you as soon as possible
                                 </Typography>
-                                <Link to="/contactus/feedbackform" style={{ textDecoration: 'none' }}>
-                                    <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
-                                        Submit Feedback
-                                    </Button>
-                                </Link>
+                                <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
+                                    Submit Feedback
+                                </Button>
                                 <Typography variant="h6" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "white" }}>
                                 </Typography> {/* paddingbottom for button (temporary) */}
                             </Box>
