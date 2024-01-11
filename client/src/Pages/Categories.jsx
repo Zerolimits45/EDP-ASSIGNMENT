@@ -61,10 +61,12 @@ function Categories() {
       </Box>
 
       <Box>
+        <div ref={dineRef}>
+          <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}>
+            Dine & Wine
+          </Typography>
+        </div>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={dineRef}>
-          Dine & Wine
-        </Typography>
 
         <Grid container spacing={3}>
           {eventList
@@ -98,9 +100,11 @@ function Categories() {
             )}
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={familyRef}>
-          Family bonding
-        </Typography>
+        <div ref={familyRef}>
+          <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} >
+            Family bonding
+          </Typography>
+        </div>
 
         <Grid container spacing={3}>
           {eventList
@@ -134,9 +138,11 @@ function Categories() {
             )}
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={sportsRef}>
-          Sports & Adventure
-        </Typography>
+        <div ref={sportsRef}>
+          <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }}>
+            Sports & Adventure
+          </Typography>
+        </div>
 
         <Grid container spacing={3}>
           {eventList
@@ -170,9 +176,11 @@ function Categories() {
             )}
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={hobbiesRef}>
-          Hobbies & Wellness
-        </Typography>
+        <div ref={hobbiesRef}>
+          <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} >
+            Hobbies & Wellness
+          </Typography>
+        </div>
 
         <Grid container spacing={3}>
           {eventList
@@ -206,9 +214,11 @@ function Categories() {
             )}
         </Grid>
 
-        <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} ref={travelRef}>
-          Travel
-        </Typography>
+        <div ref={travelRef}>
+          <Typography variant='h6' align='left' style={{ marginTop: '50px', fontWeight: 'bold', fontSize: '30px' }} >
+            Travel
+          </Typography>
+        </div>
 
         <Grid container spacing={3}>
           {eventList
