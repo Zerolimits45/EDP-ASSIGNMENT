@@ -4,12 +4,20 @@ import { Container, Box, Paper, Grid, Typography, Button, Divider, Card, CardCon
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import http from '../http.js';
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useParams } from 'react-router-dom'
 
 
 function ViewPost() {
     const btnstyle = { fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' }
     const navigate = useNavigate();
+    const { id } = useParams(); 
+    const [post, setPost] = useState([]);
+    useEffect(() => {
+        http.get(`/Post/${id}`).then((res) => {
+            setPost(res.data);
+            console.log(res.data)
+        })
+    }, [])
 
     //validation schema
     const formik = useFormik({
@@ -34,10 +42,10 @@ function ViewPost() {
             <Grid container justifyContent='center' spacing={4}>
                 <Grid item xs={6}>
                     <Typography variant="h4" style={{ textAlign: "left", fontWeight: "bold", paddingTop: 100,fontSize: '50px' }}>
-                        Placeholder Text
+                        {post.title}
                     </Typography>
                     <Typography variant="h6" style={{ textAlign: "left",paddingBottom: 50, paddingTop: 25, fontSize: '18px' }}>
-                        Placeholder Text
+                        {post.description}
                     </Typography>
                     <Box component="form" onSubmit={formik.handleSubmit}>
                         <Grid container justifyContent='center' spacing={2} direction="column">
