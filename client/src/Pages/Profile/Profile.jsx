@@ -72,7 +72,7 @@ function Profile() {
                                 color="btn"
                                 style={btnstyle}
                                 LinkComponent={Link}
-                                to={`/profile/profile/edit`}
+                                to={`/profile/edit`}
                             >
                                 Edit Details
                             </Button>
@@ -83,7 +83,7 @@ function Profile() {
                                 color="btn"
                                 style={btnstyle}
                                 LinkComponent={Link}
-                                to={`/profile/profile/changepassword`}
+                                to={`/profile/changepassword`}
                             >
                                 Change Password
                             </Button>

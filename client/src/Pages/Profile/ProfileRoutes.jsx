@@ -65,11 +65,11 @@ function ProfileRoutes() {
                 <Grid item xs={12} sm={9}>
                     <Routes>
                         <Route path="/profile" element={<Profile />} />
-                        <Route path="/profile/purchases" element={<Purchases />} />
-                        <Route path="/profile/posts" element={<Posts />} />
-                        <Route path="/profile/reviews" element={<Reviews />} />
-                        <Route path="/profile/changepassword" element={<ChangePassword />} />
-                        <Route path="/profile/edit" element={<ProfileEdit />} />
+                        <Route path="/purchases" element={<Purchases />} />
+                        <Route path="/posts" element={<Posts />} />
+                        <Route path="/reviews" element={<Reviews />} />
+                        <Route path="/changepassword" element={<ChangePassword />} />
+                        <Route path="/edit" element={<ProfileEdit />} />
                     </Routes>
                 </Grid>
             </Grid>
