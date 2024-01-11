@@ -4,11 +4,11 @@ import { MarginTwoTone } from '@mui/icons-material'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Forum() {
-    const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white', marginLeft: 50}
+    const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white', marginLeft: 50 }
 
     const handleClick = () => {
-        
-      };
+
+    };
     return (
         <Container maxWidth="x1">
             <Box style={{ backgroundColor: '#DBDBDB', backgroundSize: 'cover', borderRadius: 15, maxWidth: 1200, height: 500, margin: '50px auto' }} display={'flex'} flexDirection={'column'}>
@@ -31,7 +31,6 @@ function Forum() {
                     </Grid>
                     <Grid item xs={12} md={4} marginRight={10}>
                         <img src="../images/calender.png" style={{ width: '100%', borderRadius: '10px' }} />
-
                     </Grid>
                 </Grid>
             </Box>
@@ -45,8 +44,24 @@ function Forum() {
 
                 <Button variant='contained' color='btn' style={btnstyle} onClick={handleClick}>Official Posts</Button>
 
-
             </Box>
+            <Box style={{ backgroundSize: 'cover', borderRadius: 15, maxWidth: 1200, margin: '50px auto' }} display={'flex'} flexDirection={'column'}>
+                <Grid container spacing={3} marginTop={5} direction={'column'}>
+                    <Link to="/forum/viewpost" style={{ textDecoration: 'none'}}>
+                        <Grid item xs={12} md={12}>
+                            <Paper style={{ padding: 15 }}>
+                                <Typography variant="h5" style={{ fontWeight: "bold", fontSize: 25 }}>
+                                    Join In On The Discussions In The Community
+                                </Typography>
+                                <Typography variant="h7" style={{ color: "black", textAlign: 'left', fontSize: 15, marginTop: 10 }}>
+                                    Posted By:
+                                </Typography>
+                            </Paper>
+                        </Grid>
+                    </Link>
+                </Grid>
+            </Box>
+
         </Container>
     )
 }
