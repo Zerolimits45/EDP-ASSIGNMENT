@@ -37,17 +37,17 @@ function Signup() {
                 }).catch((error) => {
                     if (error.response && error.response.status === 400) {
                         const errorMessages = error.response.data.errors;
-                
+
                         const formikErrors = {};
                         for (const field in errorMessages) {
                             const lowercaseField = field.toLowerCase();
                             formikErrors[lowercaseField] = errorMessages[field];
                         }
-                        formik.setErrors(formikErrors);
-                        formik.setErrors({email: error.response.data.message})
+                        const combinedErrors = { ...formikErrors, email: error.response.data.message }; 
+                        formik.setErrors(combinedErrors);
                     }
                 })
-                
+
         },
     })
 

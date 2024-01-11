@@ -24,7 +24,7 @@ function AddPost() {
         onSubmit: (data) => {
             data.title = data.title.trim();
             data.description = data.description.trim();
-            http.post('/forum', data)
+            http.post('/Post', data)
                 .then((res) => {
                     console.log(res.data)
                     navigate("/forum")
