@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Typography, Grid, Container, TextField, Box, Button, Card, CardContent, Avatar } from '@mui/material'
+import { Typography, Grid, Container, TextField, Box, Button, Card, CardContent } from '@mui/material'
 
 //icons
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -15,48 +15,53 @@ function ChangePassword() {
         Change your password
       </Typography>
       <Box>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
-            <TextField
-              name="password"
-              placeholder='Old Password'
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <TextField
-              name="newPassword"
-              placeholder='New Password'
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <TextField
-              name="confirmPassword"
-              placeholder='Confirm Password'
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} md={4}>
+        <Card>
+          <CardContent>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={4}>
+                <TextField
+                  name="password"
+                  label="Old Password"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <TextField
+                  name="newPassword"
+                  label="New Password"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <TextField
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Button
+                  type="submit"
+                  variant='contained'
+                  color='btn'
+                  style={btnstyle}
+                >
+                  Save Password
+                </Button>
+              </Grid>
+            </Grid>
             <Button
-              type="submit"
               variant='contained'
-              color='btn'
+              endIcon={<ArrowBackIcon />}
+              LinkComponent={Link} to={`/profile/profile`}
               style={btnstyle}
             >
-              Save Password
+              Back
             </Button>
-          </Grid>
-        </Grid>
-        <Button
-          variant='contained'
-          endIcon={<ArrowBackIcon />}
-          LinkComponent={Link} to={`/profile/profile`}
-          style={btnstyle}
-        >
-          Back
-        </Button>
+          </CardContent>
+        </Card>
       </Box>
+
     </Container>
   )
 }
