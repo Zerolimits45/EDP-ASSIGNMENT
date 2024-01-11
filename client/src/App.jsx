@@ -22,7 +22,10 @@ import MerchantLogin from './Pages/MerchantLogin';
 import RaisedRequest from './Pages/RaisedRequest';
 import ViewPost from './Pages/ViewPost.jsx';
 import Cart from './Pages/Cart.jsx';
-import Profile from './Pages/Profile.jsx';
+import Profile from './Pages/Profile/Profile.jsx';
+
+//Other routes
+import ProfileRoutes from './Pages/Profile/ProfileRoutes.jsx';
 
 // Import components
 import Navbar from './Components/Navbar';
@@ -55,9 +58,13 @@ function App() {
         <Route path="/memberships" element={<Memberships />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
+
         {!user && (
           <Route path="/login" element={<Login />} />
         )}
+        
+        <Route path="/profile/*" element={<ProfileRoutes />} />
+
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
         <Route path="/editpost" element={<EditPost />} />
@@ -65,7 +72,6 @@ function App() {
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
         <Route path="/forum/viewpost/:id" element={<ViewPost />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/profile" element={<Profile />} />
 
       </Routes>
     </UserContext.Provider>

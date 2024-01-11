@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import { Container, Box, Paper, Grid, Typography, Button, Divider, Card, CardContent, TextField } from '@mui/material'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import http from '../http.js';
+import http from '../../http.js';
 import { useNavigate, Link } from 'react-router-dom'
 import Stack from '@mui/material/Stack';
 
