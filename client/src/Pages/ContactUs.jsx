@@ -4,6 +4,7 @@ import { Dropdown } from '@mui/base/Dropdown';
 import { MenuButton } from '@mui/base/MenuButton';
 import { Menu } from '@mui/base/Menu';
 import { MenuItem } from '@mui/base/MenuItem'
+import { Link, useNavigate } from 'react-router-dom'
 
 function ContactUs() {
     return (
@@ -35,7 +36,7 @@ function ContactUs() {
                         <Grid item xs={12} md={4} >
                             <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752', backgroundImage: 'url("../Images/hexagon.png")' }} display={'flex'} flexDirection={'column'}>
                                 <Box style={{ justifyContent: "center", paddingTop: 30 }} display={'flex'} >
-                                    <img src="../images/ContactUsLogo1.png" style={{ width: '20%', borderRadius: '10px'}} />
+                                    <img src="../images/ContactUsLogo1.png" style={{ width: '20%', borderRadius: '10px' }} />
                                 </Box>
                                 <Typography variant="h5" style={{ textAlign: "center", fontWeight: "bold", paddingTop: 60, color: "white", paddingLeft: 20, paddingRight: 20, }}>
                                     Talk to a member of our Sales team
@@ -52,7 +53,7 @@ function ContactUs() {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={4} >
-                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752', backgroundImage: 'url("../Images/hexagon.png")'}} display={'flex'} flexDirection={'column'}>
+                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: '#484752', backgroundImage: 'url("../Images/hexagon.png")' }} display={'flex'} flexDirection={'column'}>
                                 <Box style={{ justifyContent: "center", paddingTop: 30 }} display={'flex'} >
                                     <img src="../images/ContactUsLogo2.png" style={{ width: '20%', borderRadius: '10px' }} />
                                 </Box>
@@ -82,9 +83,11 @@ function ContactUs() {
                                     You can raise a request to our sales team about any enquires
                                     and we will get back to you as soon as possible
                                 </Typography>
-                                <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
-                                    Submit Feedback
-                                </Button>
+                                <Link to="/contactus/feedbackform" style={{ textDecoration: 'none' }}>
+                                    <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
+                                        Submit Feedback
+                                    </Button>
+                                </Link>
                                 <Typography variant="h6" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "white" }}>
                                 </Typography> {/* paddingbottom for button (temporary) */}
                             </Box>
