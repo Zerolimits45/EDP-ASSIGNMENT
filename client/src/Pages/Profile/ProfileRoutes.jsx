@@ -12,7 +12,7 @@ import ProfileEdit from './ProfileEdit';
 
 //icons
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 
@@ -35,7 +35,7 @@ function ProfileRoutes() {
                             <Divider />
                             <ListItem>
                                 <ListItemIcon>
-                                    <DirectionsCarIcon color='primary' />
+                                    <AttachMoneyIcon color='primary' />
                                 </ListItemIcon>
                                 <ListItemButton LinkComponent={Link} to='/profile/purchases' >
                                     <ListItemText primary="My Purchases" />
