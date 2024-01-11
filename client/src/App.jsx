@@ -24,14 +24,14 @@ import ViewPost from './Pages/ViewPost.jsx';
 import Cart from './Pages/Cart.jsx';
 
 //Other routes
-import ProfileRoutes from './Pages/Profile/ProfileRoutes.jsx';
+import ProfileRoutes from './Pages/Profile/ProfileRoutes';
 
 // Import components
 import Navbar from './Components/Navbar';
 
 
 function App() {
-    
+
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -53,15 +53,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/description/:id" element={<Description />} />
-        <Route path="/forum" element={<Forum />} /> 
+        <Route path="/forum" element={<Forum />} />
         <Route path="/memberships" element={<Memberships />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
 
-        {/* {!user && ( */}
+        {!user && (
           <Route path="/login" element={<Login />} />
-        {/* )} */}
-        
+        )}
+
         <Route path="/profile/*" element={<ProfileRoutes />} />
 
         <Route path="/signup" element={<Signup />} />
