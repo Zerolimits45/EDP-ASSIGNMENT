@@ -22,7 +22,6 @@ import MerchantLogin from './Pages/MerchantLogin';
 import RaisedRequest from './Pages/RaisedRequest';
 import ViewPost from './Pages/ViewPost.jsx';
 import Cart from './Pages/Cart.jsx';
-import Profile from './Pages/Profile/Profile.jsx';
 
 //Other routes
 import ProfileRoutes from './Pages/Profile/ProfileRoutes.jsx';
