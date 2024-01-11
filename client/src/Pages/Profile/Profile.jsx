@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import { Container, Box, Paper, Grid, Typography, Button, Divider, Card, CardContent, CardMedia, TextField } from '@mui/material'
 import { useNavigate, Link } from 'react-router-dom'
+import UserContext from '../../contexts/UserContext.js';
+import http from '../../http.js';
 
 // icons
 import AndroidIcon from '@mui/icons-material/Android';
@@ -14,6 +16,14 @@ function Profile() {
     const btnstyle = { fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' }
     const accountTitle = { color: "#000000", fontWeight: "bold" }
     const accountText = { color: "#000000", fontWeight: "semibold" }
+
+    const { user, setUser } = useContext(UserContext)
+
+    useEffect(() => {
+        http.get(`/user/${user.id}`).then((res) => {
+            setUser(res.data)
+        });
+    }, []);
 
     return (
         <Container maxWidth="xl" >
@@ -33,7 +43,7 @@ function Profile() {
                         </Grid>
                         <Grid item xs={12} md={10}>
                             <Typography variant="h4" style={accountTitle} marginTop={5}>
-                                Username
+                                {user.name}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -42,7 +52,7 @@ function Profile() {
                             <Typography variant="h5" style={accountTitle} marginTop={2} marginBottom={2}>
                                 Email:
                                 <Typography variant="h6" style={accountText}>
-                                    User Email
+                                    {user.email}
                                 </Typography>
                             </Typography>
                         </Grid>
@@ -50,7 +60,7 @@ function Profile() {
                             <Typography variant="h5" style={accountTitle} marginTop={2} marginBottom={2}>
                                 Phone number:
                                 <Typography variant="h6" style={accountText}>
-                                    Contact
+                                    {user.contact}
                                 </Typography>
                             </Typography>
                         </Grid>
