@@ -63,7 +63,7 @@ function App() {
         <Route path="/editpost" element={<EditPost />} />
         <Route path="/merchantlogin" element={<MerchantLogin />} />
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
-        <Route path="/forum/viewpost" element={<ViewPost />} />
+        <Route path="/forum/viewpost/:id" element={<ViewPost />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />} />
 
