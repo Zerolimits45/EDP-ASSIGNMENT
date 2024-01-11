@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Container, Box, Paper, Grid, Typography, Button, Divider, Card, CardContent } from '@mui/material'
 import { MarginTwoTone } from '@mui/icons-material'
 import { Link, useNavigate } from 'react-router-dom'
+import http from '../http.js';
+import UserContext from '../contexts/UserContext.js';
 
 function Forum() {
     const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white', marginLeft: 50 }
+
+
+    const { user } = useContext(UserContext);
+
+    const [postList, setPostList] = useState([]);
+    useEffect(() => {
+        http.get('/Post/All').then((res) => {
+            setPostList(res.data);
+            console.log(res.data)
+        })
+    }, [])
 
     const handleClick = () => {
 
@@ -23,11 +36,20 @@ function Forum() {
                         </Typography>
                         <Typography variant="h6" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "black" }}>
                         </Typography> {/* paddingbottom for button (temporary) */}
-                        <Link to="/addpost" style={{ textDecoration: 'none' }}>
-                            <Button variant="contained" color="btnGreen" style={{ marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15 }}>
-                                Start your own Discussion
-                            </Button>
-                        </Link>
+                        {!user && (
+                            <Link to="/login" style={{ textDecoration: 'none' }}>
+                                <Button variant="contained" color="btnGreen" style={{ marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15 }}>
+                                    Start your own Discussion
+                                </Button>
+                            </Link>
+                        )}
+                        {user && (
+                            <Link to="/addpost" style={{ textDecoration: 'none' }}>
+                                <Button variant="contained" color="btnGreen" style={{ marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15 }}>
+                                    Start your own Discussion
+                                </Button>
+                            </Link>
+                        )}
                     </Grid>
                     <Grid item xs={12} md={4} marginRight={10}>
                         <img src="../images/calender.png" style={{ width: '100%', borderRadius: '10px' }} />
@@ -47,18 +69,24 @@ function Forum() {
             </Box>
             <Box style={{ backgroundSize: 'cover', borderRadius: 15, maxWidth: 1200, margin: '50px auto' }} display={'flex'} flexDirection={'column'}>
                 <Grid container spacing={3} marginTop={5} direction={'column'}>
-                    <Link to="/forum/viewpost" style={{ textDecoration: 'none'}}>
-                        <Grid item xs={12} md={12}>
-                            <Paper style={{ padding: 15 }}>
-                                <Typography variant="h5" style={{ fontWeight: "bold", fontSize: 25 }}>
-                                    Join In On The Discussions In The Community
-                                </Typography>
-                                <Typography variant="h7" style={{ color: "black", textAlign: 'left', fontSize: 15, marginTop: 10 }}>
-                                    Posted By:
-                                </Typography>
-                            </Paper>
-                        </Grid>
-                    </Link>
+                    {
+                        postList.map((post) =>
+                            <>
+                                <Link to="/forum/viewpost" style={{ textDecoration: 'none' }}>
+                                    <Grid item xs={12} md={12}>
+                                        <Paper style={{ padding: 15 }}>
+                                            <Typography variant="h5" style={{ fontWeight: "bold", fontSize: 25 }}>
+                                                {post.title}
+                                            </Typography>
+                                            <Typography variant="h7" style={{ color: "black", textAlign: 'left', fontSize: 15, marginTop: 10 }}>
+                                                Posted By: {post.user.name}
+                                            </Typography>
+                                        </Paper>
+                                    </Grid>
+                                </Link>
+                            </>
+                        )
+                    }
                 </Grid>
             </Box>
 
