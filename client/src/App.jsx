@@ -1,8 +1,10 @@
 // Import react things
-import { useState } from 'react';
+import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
+import UserContext from './contexts/UserContext.js';
+import http from './http';
 
 // Import pages
 import Home from './Pages/Home';
@@ -24,8 +26,22 @@ import Navbar from './Components/Navbar';
 
 
 function App() {
+    
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      http.get('/User/auth').then((res) => {
+        setUser(res.data.user);
+      });
+    }
+  }, []);
+
+  const isAdmin = user && user.role === 'admin';
+  const isCustomer = user && user.role === 'customer';
+
   return (
-    <>
+    <UserContext.Provider value={{ user, setUser }}>
       <Navbar />
       <ToastContainer />
       <Routes>
@@ -36,7 +52,9 @@ function App() {
         <Route path="/memberships" element={<Memberships />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/login" element={<Login />} />
+        {!user && (
+          <Route path="/login" element={<Login />} />
+        )}
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
         <Route path="/editpost" element={<EditPost />} />
@@ -45,7 +63,7 @@ function App() {
 
 
       </Routes>
-    </>
+    </UserContext.Provider>
   );
 }
 
