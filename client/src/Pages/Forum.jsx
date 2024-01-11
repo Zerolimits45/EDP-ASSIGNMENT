@@ -72,7 +72,7 @@ function Forum() {
                     {
                         postList.map((post) =>
                             <>
-                                <Link to="/forum/viewpost" style={{ textDecoration: 'none' }}>
+                                <Link to={`/forum/viewpost/${post.id}`} style={{ textDecoration: 'none' }}>
                                     <Grid item xs={12} md={12}>
                                         <Paper style={{ padding: 15 }}>
                                             <Typography variant="h5" style={{ fontWeight: "bold", fontSize: 25 }}>
