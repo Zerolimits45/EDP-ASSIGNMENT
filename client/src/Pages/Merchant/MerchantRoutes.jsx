@@ -5,6 +5,7 @@ import { Link, Routes, Route } from 'react-router-dom'
 //Pages
 import CreateEvent from './CreateEvent'
 import ViewEvent from './ViewEvent'
+import EditEvent from './EditEvent'
 
 //icons
 import CreateIcon from '@mui/icons-material/Create';
@@ -42,6 +43,7 @@ function ProfileRoutes() {
                     <Routes>
                         <Route path='/createevent' element={<CreateEvent />} />
                         <Route path='/viewevent' element={<ViewEvent />} />
+                        <Route path='/editEvent' element={<EditEvent />} />
                     </Routes>
                 </Grid>
             </Grid>
