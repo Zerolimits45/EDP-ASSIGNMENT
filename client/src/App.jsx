@@ -69,7 +69,6 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
-        <Route path="/editpost" element={<EditPost />} />
         <Route path="/merchantlogin" element={<MerchantLogin />} />
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
         <Route path="/forum/viewpost/:id" element={<ViewPost />} />

@@ -15,11 +15,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
+import EditPost from '../EditPost';
 
 
 function ProfileRoutes() {
-  return (
-    <Container maxWidth='xl'>
+    return (
+        <Container maxWidth='xl'>
             <Grid container spacing={2} marginTop={10}>
                 <Grid item xs={12} sm={3}>
                     <Card>
@@ -64,17 +65,18 @@ function ProfileRoutes() {
                 </Grid>
                 <Grid item xs={12} sm={9}>
                     <Routes>
+                        <Route path="/editpost/:id" element={<EditPost />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/purchases" element={<Purchases />} />
                         <Route path="/posts" element={<Posts />} />
                         <Route path="/reviews" element={<Reviews />} />
                         <Route path="/changepassword" element={<ChangePassword />} />
-                        <Route path="/edit" element={<ProfileEdit />} />
+                        <Route path="/edit/:id" element={<ProfileEdit />} />
                     </Routes>
                 </Grid>
             </Grid>
         </Container>
-  )
+    )
 }
 
 export default ProfileRoutes
