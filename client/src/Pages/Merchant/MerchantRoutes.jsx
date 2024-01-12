@@ -43,7 +43,7 @@ function ProfileRoutes() {
                     <Routes>
                         <Route path='/createevent' element={<CreateEvent />} />
                         <Route path='/viewevent' element={<ViewEvent />} />
-                        <Route path='/editEvent' element={<EditEvent />} />
+                        <Route path='/editEvent/:id' element={<EditEvent />} />
                     </Routes>
                 </Grid>
             </Grid>
