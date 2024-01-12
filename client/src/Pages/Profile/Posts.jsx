@@ -5,9 +5,16 @@ import { Link, useNavigate } from 'react-router-dom'
 import http from '../../http.js';
 import UserContext from '../../contexts/UserContext.js';
 
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+
+
+
 function Posts() {
   const btnstyle = { margin: '8px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
   const dividerstyle = { backgroundColor: '#150039', fontWeight: 'bold', margin: '10px 0' };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const { user } = useContext(UserContext);
   const [postList, setPostList] = useState([]);
@@ -59,17 +66,37 @@ function Posts() {
                                 Edit Post
                               </Button>
                             </Link>
-                            <Link to={`/profile/edit/${post.id}`} style={{ textDecoration: 'none' }}>
-                              <Button
-                                variant='contained'
-                                color='btn'
-                                style={{ margin: '8px 0', fontWeight: 'bold', color: 'white', backgroundColor: 'red', marginLeft: 50 }}
-                              >
+                            <Dialog open={open} onClose={handleClose}>
+                              <DialogTitle>
                                 Delete Post
-                              </Button>
-                            </Link>
+                              </DialogTitle>
+                              <DialogContent>
+                                <DialogContentText>
+                                  Are you sure you want to delete this Post?
+                                </DialogContentText>
+                              </DialogContent>
+                              <DialogActions>
+                                <Button variant="contained" color="inherit"
+                                  onClick={handleClose}>
+                                  Cancel
+                                </Button>
+                                <Button variant="contained" color="error"
+                                  >
+                                  Delete
+                                </Button>
+                              </DialogActions>
+                            </Dialog>
+                            <Button
+                              variant='contained'
+                              color='btn'
+                              style={{ margin: '8px 0', fontWeight: 'bold', color: 'white', backgroundColor: 'red', marginLeft: 50 }}
+                              onClick={handleOpen}
+                            >
+                              Delete Post
+                            </Button>
+
                           </Box >
-                        </Box>  
+                        </Box>
 
                       </Grid>
                     </Grid>

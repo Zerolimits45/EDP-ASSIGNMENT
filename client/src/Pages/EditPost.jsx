@@ -44,14 +44,14 @@ function EditPost() {
     });
     return (
         <Container maxWidth="x1">
-            <Grid container justifyContent='center' spacing={4}>
-                <Grid item xs={6}>
-                    <Typography variant="h4" style={{ textAlign: "left", fontWeight: "bold", paddingTop: 100, paddingBottom: 50, fontSize: '50px' }}>
+            <Grid container justifyContent='center' spacing={3}>
+                <Grid item md={6}>
+                    <Typography variant="h4" style={{ textAlign: "left", fontWeight: "bold",paddingBottom: 50, fontSize: '50px' }}>
                         Edit Your Posts
                     </Typography>
                     <Box component="form" onSubmit={formik.handleSubmit}>
                         <Grid container justifyContent='center' spacing={2} direction="column">
-                            <Grid item xs={4} style={{ maxWidth: 596 }}>
+                            <Grid item md={4} style={{ maxWidth: 596 }}>
                                 <TextField
                                     fullWidth
                                     label="Enter Title"
@@ -63,7 +63,7 @@ function EditPost() {
 
                                 />
                             </Grid>
-                            <Grid item xs={7} style={{ maxWidth: 800 }}>
+                            <Grid item md={7} style={{ maxWidth: 800 }}>
                                 <TextField
                                     inputProps={{
                                         style: {
@@ -89,7 +89,7 @@ function EditPost() {
                     </Box>
 
                 </Grid>
-                <Grid item xs={4} marginTop={20}>
+                <Grid item md={4} marginLeft ={10}>
                     <Paper elevation={5} square={false}>
                         <Typography variant="h6" style={{ textAlign: "left", fontWeight: "bold", fontSize: '25px', marginLeft: 20, paddingBottom: 10, paddingTop: 10 }}>
                             Rules On Posting:
