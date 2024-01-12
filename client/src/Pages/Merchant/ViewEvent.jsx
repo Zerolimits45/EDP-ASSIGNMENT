@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography, Grid, Container, TextField, Box, Button, Card, CardContent, CardMedia } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 function ViewEvent() {
     return (
@@ -52,9 +53,11 @@ function ViewEvent() {
                         </Typography>
                         </Grid>
                         <Grid item xs={12} md={6}>
+                            <Link to="/Merchant/EditEvent">
                             <Button variant="contained" color="primary" fullWidth>
                                 Edit Event
                             </Button>
+                            </Link>
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Button variant="contained" color="primary" fullWidth>
