@@ -23,6 +23,7 @@ import RaisedRequest from './Pages/RaisedRequest';
 import ViewPost from './Pages/ViewPost';
 import Cart from './Pages/Cart';
 
+
 //Other routes
 import ProfileRoutes from './Pages/Profile/ProfileRoutes';
 import MerchantRoutes from './Pages/Merchant/MerchantRoutes';
@@ -68,11 +69,11 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
-        <Route path="/editpost" element={<EditPost />} />
         <Route path="/merchantlogin" element={<MerchantLogin />} />
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
         <Route path="/forum/viewpost/:id" element={<ViewPost />} />
         <Route path="/cart" element={<Cart />} />
+
 
       </Routes>
     </UserContext.Provider>

@@ -9,6 +9,8 @@ import Posts from './Posts';
 import Reviews from './Reviews';
 import ChangePassword from './ChangePassword';
 import ProfileEdit from './ProfileEdit';
+import EditPost from '../EditPost';
+import DeletePost from '../DeletePost';
 
 //icons
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -17,9 +19,10 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
 
 
+
 function ProfileRoutes() {
-  return (
-    <Container maxWidth='xl'>
+    return (
+        <Container maxWidth='xl'>
             <Grid container spacing={2} marginTop={10}>
                 <Grid item xs={12} sm={3}>
                     <Card>
@@ -64,17 +67,19 @@ function ProfileRoutes() {
                 </Grid>
                 <Grid item xs={12} sm={9}>
                     <Routes>
+                        <Route path="/editpost/:id" element={<EditPost />} />
+                        <Route path="/deletepost/:id" element={<DeletePost />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/purchases" element={<Purchases />} />
                         <Route path="/posts" element={<Posts />} />
                         <Route path="/reviews" element={<Reviews />} />
                         <Route path="/changepassword" element={<ChangePassword />} />
-                        <Route path="/edit" element={<ProfileEdit />} />
+                        <Route path="/edit/:id" element={<ProfileEdit />} />
                     </Routes>
                 </Grid>
             </Grid>
         </Container>
-  )
+    )
 }
 
 export default ProfileRoutes
