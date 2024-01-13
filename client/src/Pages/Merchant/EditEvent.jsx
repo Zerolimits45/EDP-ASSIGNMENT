@@ -13,24 +13,36 @@ import { useParams } from 'react-router-dom';
 function CreateEvent() {
     const btnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
 
-    const {id} = useParams()
-    const [e, setE] = useState({
-        title: "",
-        description: "",
-        category: "",
-        capacity: "",
-        price: "",
-        address: "",
-    });
+    const { id } = useParams()
+
     useEffect(() => {
         http.get(`/Event/${id}`).then((res) => {
-            setE(res.data);
-            console.log(res.data)
-        })
-    }, [])
+            const initialValues = {
+                title: res.data.title,
+                description: res.data.description,
+                category: res.data.category,
+                capacity: res.data.capacity.toString(),
+                price: res.data.price.toString(),
+                address: res.data.address,
+                startdate: dayjs(res.data.startDate),
+                enddate: dayjs(res.data.endDate),
+            };
+            formik.setValues({ ...initialValues });
+            console.log(res.data);
+        });
+    }, []);
 
     const formik = useFormik({
-        initialValues: {e, startdate: "", enddate: ""},
+        initialValues: {
+            title: "",
+            description: "",
+            category: "",
+            capacity: "",
+            price: "",
+            address: "",
+            startdate: "",
+            enddate: "",
+        },
         validationSchema: yup.object({
             title: yup.string().trim().min(3).max(100).required(),
             description: yup.string().trim().min(3).max(500).required(),
@@ -183,15 +195,14 @@ function CreateEvent() {
                                 error={formik.touched.enddate && Boolean(formik.errors.enddate)}
                             />
                         </LocalizationProvider>
-                        {formik.touched.enddate && formik.errors.enddate && (
-                            <Typography variant="caption" color="error">
-                                <br />
-                                {formik.errors.enddate}
-                            </Typography>
-                        )}
                         {formik.touched.startdate && formik.errors.startdate && (
                             <Typography variant="caption" color="error">
                                 {formik.errors.startdate}
+                            </Typography>
+                        )}
+                        {formik.touched.enddate && formik.errors.enddate && (
+                            <Typography variant="caption" color="error">
+                                {formik.errors.enddate}
                             </Typography>
                         )}
                     </CardContent>

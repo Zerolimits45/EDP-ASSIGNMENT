@@ -72,7 +72,7 @@ function Profile() {
                                 color="btn"
                                 style={btnstyle}
                                 LinkComponent={Link}
-                                to={`/profile/edit`}
+                                to={`/profile/edit/${user.id}`}
                             >
                                 Edit Details
                             </Button>
