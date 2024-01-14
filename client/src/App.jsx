@@ -30,6 +30,7 @@ import MerchantRoutes from './Pages/Merchant/MerchantRoutes';
 
 // Import components
 import Navbar from './Components/Navbar';
+import Checkout_Success from './Pages/Checkout_Success.jsx';
 
 
 function App() {
@@ -73,7 +74,7 @@ function App() {
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
         <Route path="/forum/viewpost/:id" element={<ViewPost />} />
         <Route path="/cart" element={<Cart />} />
-
+        <Route path="/success" element={<Checkout_Success/>} />
 
       </Routes>
     </UserContext.Provider>
