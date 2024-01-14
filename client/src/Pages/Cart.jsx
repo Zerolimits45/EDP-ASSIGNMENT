@@ -19,6 +19,24 @@ function Cart() {
         })
     }, [])
 
+    const calculateTotalPrice = () => {
+        return cartList.reduce((total, cartItem) => {
+            return total + cartItem.quantity * cartItem.event.price;
+        }, 0);
+    };
+
+    const handleCheckout = async () => {
+        try {
+            http.post(`/Order/create-checkout-session`).then((res) => {
+                console.log(res.data)
+                window.location.href = res.data.url;
+            })
+        } catch (error) {
+            console.error('Error during checkout:', error);
+        }
+    };
+
+
     return (
         <Container maxWidth="x1">
             <Box flexDirection={'row'} display={'flex'} justifyContent={'center'}>
@@ -26,8 +44,8 @@ function Cart() {
                     <Box border={0} borderRadius={3} height={64} width={697} style={{ backgroundColor: '#000000' }}>
                         <Typography variant="h6" style={{ textAlign: "left", paddingTop: 15, paddingLeft: 20, fontWeight: 'bold', color: 'white' }}>My Cart</Typography>
                     </Box>
-                    {cartList.map((cartItem) => (
-                        <Box border={1} borderRadius={3} width={632} height={300} padding={4} marginTop={3}>
+                    <Box border={1} borderRadius={3} width={632} height={300} padding={4} marginTop={3}>
+                        {cartList.map((cartItem) => (
                             <Grid container direction='row' border={0} justifyContent={'center'} spacing={1}>
                                 <Grid item xs={4} borderRadius={4}>
                                     <img src="../images/test.png" style={{ width: '100%', borderRadius: '10px' }} />
@@ -49,8 +67,8 @@ function Cart() {
                                     <Typography variant="h6" style={{ textAlign: "right", paddingTop: 15 }}>${cartItem.quantity * cartItem.event.price}</Typography>
                                 </Grid>
                             </Grid>
-                        </Box>
-                    ))}
+                        ))}
+                    </Box>
                 </Box>
                 <Box border={1} marginTop={15} width={632} marginLeft={20}>
                     <Box border={0} height={64} width={632} style={{ backgroundColor: '#000000', }}>
@@ -69,14 +87,26 @@ function Cart() {
                             </Grid>
                         </Grid>
                     ))}
+                    <Box border={0} borderTop={1} marginTop={2}>
+                        <Grid container direction="row">
+                            <Grid item xs={8}>
+                                <Typography variant="h6" style={{ textAlign: "left", paddingTop: 15, paddingLeft: 20, fontWeight: 'bold' }}>
+                                    Total
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Typography variant="h6" style={{ textAlign: "right", paddingTop: 15, paddingRight: 20 }}>
+                                    ${calculateTotalPrice()}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
                 </Box>
             </Box>
             <Box maxWidth={110} marginLeft={159} marginTop={5}>
-                <Link to="" style={{ textDecoration: 'none' }}>
-                    <Button variant="contained" color='btnGreen' style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
-                        Checkout
-                    </Button>
-                </Link>
+                <Button onClick={handleCheckout} variant="contained" color='btnGreen' style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
+                    Checkout
+                </Button>
             </Box>
         </Container>
     )
