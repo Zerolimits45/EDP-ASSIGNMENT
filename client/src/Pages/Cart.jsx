@@ -29,6 +29,7 @@ function Cart() {
         try {
             http.post(`/Order/create-checkout-session`).then((res) => {
                 console.log(res.data)
+                localStorage.setItem("stripeid", res.data.id)
                 window.location.href = res.data.url;
             })
         } catch (error) {
