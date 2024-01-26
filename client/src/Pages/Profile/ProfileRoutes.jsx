@@ -53,14 +53,6 @@ function ProfileRoutes() {
                                 </ListItemButton>
                             </ListItem>
                             <Divider />
-                            <ListItem>
-                                <ListItemIcon>
-                                    <LibraryBooksIcon color='primary' />
-                                </ListItemIcon>
-                                <ListItemButton LinkComponent={Link} to='/profile/reviews' >
-                                    <ListItemText primary="My Reviews" />
-                                </ListItemButton>
-                            </ListItem>
                         </List>
                     </Card>
                 </Grid>
@@ -70,7 +62,6 @@ function ProfileRoutes() {
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/purchases" element={<Purchases />} />
                         <Route path="/posts" element={<Posts />} />
-                        <Route path="/reviews" element={<Reviews />} />
                         <Route path="/changepassword" element={<ChangePassword />} />
                         <Route path="/edit/:id" element={<ProfileEdit />} />
                     </Routes>

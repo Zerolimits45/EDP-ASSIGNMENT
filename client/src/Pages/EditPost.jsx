@@ -11,22 +11,24 @@ function EditPost() {
     const btnstyle = { fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' }
     const navigate = useNavigate();
     const { id } = useParams();
-    const [p, setP] = useState({
-        title: "",
-        description: "",
 
-    });
-    const [postList, setPostList] = useState([]);
     useEffect(() => {
         http.get(`/Post/${id}`).then((res) => {
-            setPostList(res.data);
-            setP(res.data);
+            const initialValues = {
+                title: res.data.title,
+                description: res.data.description,
+            };
+            formik.setValues({ ...initialValues });
+            console.log(res.data);
         });
     }, []);
 
     //validation schema
     const formik = useFormik({
-        initialValues: p,
+        initialValues: {
+            title: "",
+            description: ""
+        },
         validationSchema: yup.object({
             title: yup.string().trim().min(3).max(100).required(),
             description: yup.string().trim().min(3).max(500).required()
@@ -37,7 +39,7 @@ function EditPost() {
             http.put(`/Post/${id}`, data)
                 .then((res) => {
                     console.log(res.data)
-                    navigate("/editpost")
+                    navigate("/profile/posts")
                     formik.resetForm();
                 })
         },
@@ -46,7 +48,7 @@ function EditPost() {
         <Container maxWidth="x1">
             <Grid container justifyContent='center' spacing={3}>
                 <Grid item md={6}>
-                    <Typography variant="h4" style={{ textAlign: "left", fontWeight: "bold",paddingBottom: 50, fontSize: '50px' }}>
+                    <Typography variant="h4" style={{ textAlign: "left", fontWeight: "bold", paddingBottom: 50, fontSize: '50px' }}>
                         Edit Your Posts
                     </Typography>
                     <Box component="form" onSubmit={formik.handleSubmit}>
@@ -89,7 +91,7 @@ function EditPost() {
                     </Box>
 
                 </Grid>
-                <Grid item md={4} marginLeft ={10}>
+                <Grid item md={4} marginLeft={10}>
                     <Paper elevation={5} square={false}>
                         <Typography variant="h6" style={{ textAlign: "left", fontWeight: "bold", fontSize: '25px', marginLeft: 20, paddingBottom: 10, paddingTop: 10 }}>
                             Rules On Posting:

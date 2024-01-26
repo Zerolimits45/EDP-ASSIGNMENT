@@ -12,8 +12,12 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
 function Posts() {
   const btnstyle = { margin: '8px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
   const dividerstyle = { backgroundColor: '#150039', fontWeight: 'bold', margin: '10px 0' };
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [open, setOpen] = useState(false);
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  const handleOpen = (id) => {
+    setSelectedPostId(id);
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   const { user } = useContext(UserContext);
@@ -23,7 +27,7 @@ function Posts() {
       setPostList(res.data);
       console.log(res.data)
     })
-  }, [])
+  }, [postList])
 
   return (
     <Container maxWidth="xl" >
@@ -31,13 +35,13 @@ function Posts() {
         My Posts
       </Typography>
       <Grid container>
-        <Grid item xs={12} md={12}>
-          {
-            postList.map((post) =>
-              <>
+        {
+          postList.map((post) =>
+            <>
+              <Grid item xs={12} md={12}>
                 <Card elevation={5}>
-                  <CardContent>
-                    <Grid container spacing={2}>
+                  <CardContent >
+                    <Grid container spacing={2} >
                       <Grid item xs={12} display={'flex'}>
                         <Box style={{ display: 'flex', flexDirection: 'column' }}>
                           <Typography variant='h5' fontWeight={600}>
@@ -81,7 +85,13 @@ function Posts() {
                                   Cancel
                                 </Button>
                                 <Button variant="contained" color="error"
-                                  >
+                                  onClick={() => {
+                                    http.delete(`/Post/${selectedPostId}`).then((res) => {
+                                      console.log(res.data)
+                                      handleClose()
+                                    })
+                                  }}
+                                >
                                   Delete
                                 </Button>
                               </DialogActions>
@@ -90,7 +100,7 @@ function Posts() {
                               variant='contained'
                               color='btn'
                               style={{ margin: '8px 0', fontWeight: 'bold', color: 'white', backgroundColor: 'red', marginLeft: 50 }}
-                              onClick={handleOpen}
+                              onClick={() => handleOpen(post.id)}
                             >
                               Delete Post
                             </Button>
@@ -102,10 +112,10 @@ function Posts() {
                     </Grid>
                   </CardContent>
                 </Card >
-              </>
-            )
-          }
-        </Grid>
+              </Grid>
+            </>
+          )
+        }
       </Grid>
     </Container >
   )
