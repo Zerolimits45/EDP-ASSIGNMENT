@@ -10,7 +10,6 @@ import Reviews from './Reviews';
 import ChangePassword from './ChangePassword';
 import ProfileEdit from './ProfileEdit';
 import EditPost from '../EditPost';
-import DeletePost from '../DeletePost';
 
 //icons
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -68,7 +67,6 @@ function ProfileRoutes() {
                 <Grid item xs={12} sm={9}>
                     <Routes>
                         <Route path="/editpost/:id" element={<EditPost />} />
-                        <Route path="/deletepost/:id" element={<DeletePost />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/purchases" element={<Purchases />} />
                         <Route path="/posts" element={<Posts />} />
