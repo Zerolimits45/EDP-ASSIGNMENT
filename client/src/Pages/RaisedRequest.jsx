@@ -17,6 +17,7 @@ function RaisedRequest() {
             email: '',
             title: '',
             description: '',
+            category: 'Enquiry',
         },
         validationSchema: yup.object({
             name: yup.string().trim().min(3).max(100).required(),
@@ -31,11 +32,11 @@ function RaisedRequest() {
             data.email = data.email.trim();
             data.title = data.title.trim();
             data.description = data.description.trim();
-            http.post('/', data)
+            data.category = "Enquiry"
+            http.post('/Ticket', data)
                 .then((res) => {
                     console.log(res.data)
                     navigate("/")
-                    formik.resetForm();
                 })
         },
     });
