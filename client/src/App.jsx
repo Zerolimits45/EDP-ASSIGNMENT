@@ -27,6 +27,7 @@ import Cart from './Pages/Cart';
 //Other routes
 import ProfileRoutes from './Pages/Profile/ProfileRoutes';
 import MerchantRoutes from './Pages/Merchant/MerchantRoutes';
+import AdminRoutes from './Pages/Admin/AdminRoutes';
 
 // Import components
 import Navbar from './Components/Navbar';
@@ -67,6 +68,7 @@ function App() {
 
         <Route path="/profile/*" element={<ProfileRoutes />} />
         <Route path="/merchant/*" element={<MerchantRoutes />} />
+        <Route path="/admin/*" element={<AdminRoutes />} />
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
