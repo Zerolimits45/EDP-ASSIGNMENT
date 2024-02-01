@@ -4,6 +4,8 @@ import { MarginTwoTone } from '@mui/icons-material'
 import { Link, useNavigate } from 'react-router-dom'
 import http from '../http.js';
 import UserContext from '../contexts/UserContext.js';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function Forum() {
     const btnstyle = { backgroundColor: 'btn', fontWeight: 'bold', color: 'white', marginLeft: 50 }
@@ -12,12 +14,36 @@ function Forum() {
     const { user } = useContext(UserContext);
 
     const [postList, setPostList] = useState([]);
+    const [likedPosts, setLikedPosts] = useState([]);
+
     useEffect(() => {
         http.get(`/Post/All/?role=${role}`).then((res) => {
             setPostList(res.data);
             console.log(res.data)
         })
-    }, [role])
+    }, [role, likedPosts])
+
+    useEffect(() => {
+        http.get('/Post/Liked').then((res) => {
+            const likedPostIds = res.data.map(post => post.id);
+            setLikedPosts(likedPostIds);
+        });
+    }, []);
+
+
+    const handleLike = async (postId) => {
+        try {
+            await http.post(`/Post/Like/${postId}`);
+            if (likedPosts.includes(postId)) {
+                const updatedLikedPosts = likedPosts.filter(id => id !== postId);
+                setLikedPosts(updatedLikedPosts);
+            } else {
+                setLikedPosts(prevLikedPosts => [...prevLikedPosts, postId]);
+            }
+        } catch (error) {
+            console.error("Error liking post:", error);
+        }
+    };
 
     const handleClick = (clickedRole) => {
         setRole(clickedRole)
@@ -72,18 +98,32 @@ function Forum() {
                     {
                         postList.map((post) =>
                             <>
-                                <Link to={`/forum/viewpost/${post.id}`} style={{ textDecoration: 'none' }}>
-                                    <Grid item xs={12} md={12}>
-                                        <Paper style={{ padding: 15 }}>
-                                            <Typography variant="h5" style={{ fontWeight: "bold", fontSize: 25 }}>
-                                                {post.title}
-                                            </Typography>
-                                            <Typography variant="h7" style={{ color: "black", textAlign: 'left', fontSize: 15, marginTop: 10 }}>
-                                                Posted By: {post.user.name}
-                                            </Typography>
-                                        </Paper>
-                                    </Grid>
-                                </Link>
+                                <Grid item xs={12} md={12}>
+                                    <Paper style={{ padding: 15 }}>
+                                        <Grid container spacing={2} alignItems="center">
+                                            <Grid item xs={10}>
+                                                <Link to={`/forum/viewpost/${post.id}`} style={{ textDecoration: 'none' }}>
+                                                    <Typography variant="h5" style={{ fontWeight: 'bold', fontSize: 25 }}>
+                                                        {post.title}
+                                                    </Typography>
+                                                </Link>
+                                            </Grid>
+                                            <Grid item xs={1}>
+                                                <Button onClick={() => handleLike(post.id)}>
+                                                    {likedPosts.includes(post.id) ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
+                                                </Button>
+                                            </Grid>
+                                            <Grid item xs={1}>
+                                                <Typography>
+                                                    {post.likes}
+                                                </Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Typography variant="h7" style={{ color: "black", textAlign: 'left', fontSize: 15, marginTop: 10 }}>
+                                            Posted By: {post.user.name}
+                                        </Typography>
+                                    </Paper>
+                                </Grid>
                             </>
                         )
                     }
