@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Button } from '@mui/material'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
+import http from '../../http'
 
 function RenderButton(props) {
-    const { hasFocus, value, user } = props;
+    const { hasFocus, value, user, getUsers } = props;
     const buttonElement = React.useRef(null);
     const rippleRef = React.useRef(null);
 
@@ -35,7 +36,7 @@ function RenderButton(props) {
                 variant="contained"
                 size="small"
                 style={{ backgroundColor: '#6CA0DC' }}
-            //   LinkComponent={Link} to={`/admin/users/edit/${user.id}`}
+                LinkComponent={Link} to={`/admin/viewusers/edit/${user.id}`}
             >
                 Edit
             </Button>
@@ -67,10 +68,11 @@ function RenderButton(props) {
                     </Button>
                     <Button variant="contained" color="error"
                         onClick={() => {
-                            // http.delete(`/user/${user.id}`).then((res) => {
-                            //   console.log(res.data)
-                            //   navigate('/admin/dashboard')
-                            // });
+                            http.delete(`/AdminUser/${user.id}`).then((res) => {
+                                console.log(res.data)
+                                handleClose()
+                                getUsers();
+                            });
                         }}>
                         Delete
                     </Button>
@@ -83,34 +85,53 @@ function RenderButton(props) {
     );
 }
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Name', width: 200 },
-    { field: 'email', headerName: 'Email', width: 200 },
-    { field: 'phone', headerName: 'Phone', width: 100 },
-    { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} /> },
-];
-
-const rows = "" ;
-
 function UserView() {
+    const [userList, setUserList] = useState([]);
+
+    const rows = userList.map((user) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.contact,
+    }));
+
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'name', headerName: 'Name', width: 100 },
+        { field: 'phone', headerName: 'Phone', width: 100 },
+        { field: 'email', headerName: 'Email', width: 200 },
+        { field: 'address', headerName: 'Address', width: 200 },
+        { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} getUsers={getUsers} /> },
+    ];
+    
+
+    const getUsers = () => {
+        http.get(`/AdminUser/allusers`).then((res) => {
+            setUserList(res.data);
+        });
+    };
+
+    useEffect(() => {
+        getUsers();
+    }, []);
+
     return (
         <>
-      <div style={{ width: '100%', backgroundColor: 'white' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-          sx={{ height: 500 }}
-        />
-      </div>
-    </>
+            <div style={{ width: '100%', backgroundColor: 'white' }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                    sx={{ height: 500 }}
+                />
+            </div>
+        </>
     )
 }
 
