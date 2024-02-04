@@ -1,9 +1,10 @@
 import React from 'react'
-import {Container, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Grid, Card } from '@mui/material'
+import { Container, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Grid, Card } from '@mui/material'
 import { Link, Routes, Route } from 'react-router-dom'
 
 //Pages
 import UserView from './UserView'
+import UserEdit from './UserEdit'
 import OrdersView from './OrdersView'
 import PostsView from './PostsView'
 import EventsView from './EventsView'
@@ -18,8 +19,8 @@ import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 
 
 function ProfileRoutes() {
-  return (
-    <Container maxWidth='xl'>
+    return (
+        <Container maxWidth='xl'>
             <Grid container spacing={2} marginTop={10}>
                 <Grid item xs={12} sm={3}>
                     <Card>
@@ -73,16 +74,17 @@ function ProfileRoutes() {
                 </Grid>
                 <Grid item xs={12} sm={9}>
                     <Routes>
+                        <Route path="/viewusers/edit/:id" element={<UserEdit />} />
                         <Route path='/viewusers' element={<UserView />} />
                         <Route path='/vieworders' element={<OrdersView />} />
                         <Route path='/viewposts' element={<PostsView />} />
                         <Route path='/customerserviceticket' element={<CustomerServiceTickets />} />
-                        <Route path='/viewevents' element={<EventsView/>} />
+                        <Route path='/viewevents' element={<EventsView />} />
                     </Routes>
                 </Grid>
             </Grid>
         </Container>
-  )
+    )
 }
 
 export default ProfileRoutes
