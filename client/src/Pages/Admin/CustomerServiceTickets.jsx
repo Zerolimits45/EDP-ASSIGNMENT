@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
+import http from '../../http'
 
 function RenderButton(props) {
     const { feedback } = props;
@@ -55,36 +56,60 @@ function RenderButton(props) {
     );
 }
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'name', headerName: 'Event Name', width: 200 },
-    { field: 'date', headerName: 'Date', width: 200 },
-    { field: 'location', headerName: 'Location', width: 200 },
-    { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} /> },
-
-];
-
-const rows = "" ;
-
 function CustomerServiceTickets() {
-  return (
-    <>
-    <div style={{ width: '100%', backgroundColor: 'white' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{ height: 500 }}
-      />
-    </div>
-  </>
-  )
+    const [ticketList, setTicketList] = useState([]);
+
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'name', headerName: 'Name', width: 100 },
+        { field: 'email', headerName: 'Email', width: 150 },
+        { field: 'title', headerName: 'Title', width: 100 },
+        { field: 'description', headerName: 'Description', width: 200 },
+        { field: 'category', headerName: 'Category', width: 100 },
+        { field: 'status', headerName: 'Status', width: 100 },
+        { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} /> },
+
+    ];
+
+    const rows = ticketList.map((ticket) => ({
+        id: ticket.id,
+        name: ticket.name,
+        email: ticket.email,
+        title: ticket.title,
+        description: ticket.description,
+        category: ticket.category,
+        status: ticket.status,
+    }));
+
+    const getTickets = () => {
+        http.get(`/Ticket/all`).then((res) => {
+            setTicketList(res.data);
+        });
+    };
+
+    useEffect(() => {
+        getTickets();
+    }, []);
+
+
+    return (
+        <>
+            <div style={{ width: '100%', backgroundColor: 'white' }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                    sx={{ height: 500 }}
+                />
+            </div>
+        </>
+    )
 }
 
 export default CustomerServiceTickets
