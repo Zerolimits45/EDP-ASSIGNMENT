@@ -7,6 +7,7 @@ import { MenuItem } from '@mui/base/MenuItem'
 import { Link, useNavigate } from 'react-router-dom'
 import http from '../http.js';
 import UserContext from '../contexts/UserContext.js';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cart() {
     const { user } = useContext(UserContext);
@@ -64,12 +65,16 @@ function Cart() {
                                         Quantity: {cartItem.quantity}
                                     </Typography>
                                 </Grid>
+
                                 <Grid item xs={2}>
                                     <Typography variant="h6" style={{ textAlign: "right", paddingTop: 15 }}>${cartItem.quantity * cartItem.event.price}</Typography>
+                                    <DeleteIcon sx={{ cursor: 'pointer' }} style={{ paddingLeft: 80, paddingTop: 5 }} />
                                 </Grid>
                             </Grid>
                         ))}
                     </Box>
+                
+                    <Button style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 10, display: 'block', fontWeight: "bold", color: 'white', backgroundColor:'red', padding: 15  }}>Delete All</Button>
                 </Box>
                 <Box border={1} marginTop={15} width={632} marginLeft={20}>
                     <Box border={0} height={64} width={632} style={{ backgroundColor: '#000000', }}>
@@ -105,7 +110,7 @@ function Cart() {
                 </Box>
             </Box>
             <Box maxWidth={110} marginLeft={159} marginTop={5}>
-                <Button onClick={handleCheckout} variant="contained" color='btnGreen' style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
+                <Button onClick={handleCheckout} variant="contained" color='btnGreen' style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15 }}>
                     Checkout
                 </Button>
             </Box>
