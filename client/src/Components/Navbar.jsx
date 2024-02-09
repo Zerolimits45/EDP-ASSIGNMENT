@@ -40,6 +40,7 @@ function Navbar() {
                         <Button color="inherit" LinkComponent={Link} to='/contactus' sx={{ fontWeight: 'bold' }}>Contact Us</Button>
                         <Button color="inherit" LinkComponent={Link} to='/forum' sx={{ fontWeight: 'bold' }}>Forum</Button>
                         <Button color="inherit" LinkComponent={Link} to='/merchant' sx={{ fontWeight: 'bold' }}>Merchant test</Button>
+                        <Button color="inherit" LinkComponent={Link} to='/admin' sx={{ fontWeight: 'bold' }}>Admin test</Button>
                     </Box>
                     <>
                         <ShoppingCartIcon style={{ color: "black" }} />
