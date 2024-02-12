@@ -26,6 +26,19 @@ function RenderButton(props) {
             >
                 Delete
             </Button>
+            {
+                ticket.status == "Ongoing" && (
+                    <Button
+                        variant="contained"
+                        size="small"
+                        style={{ marginLeft: 16, backgroundColor: '#228B22' }}
+                        onClick={handleCompleteBooking} // u need to change this
+                    >
+                        Complete Request
+                    </Button>
+                )
+            }
+
 
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>
