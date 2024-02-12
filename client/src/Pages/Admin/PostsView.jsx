@@ -7,6 +7,7 @@ import http from '../../http'
 
 function RenderButton(props) {
     const { post } = props;
+    const buttonElement = React.useRef(null);
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -32,7 +33,7 @@ function RenderButton(props) {
             <Button
                 variant="contained"
                 size="small"
-                style={{ backgroundColor: '#C70000' }}
+                style={{ marginLeft: 16, backgroundColor: '#C70000' }}
                 onClick={handleOpen}
             >
                 Delete
@@ -54,7 +55,7 @@ function RenderButton(props) {
                     </Button>
                     <Button variant="contained" color="error"
                         onClick={() => {
-                            http.delete(`/Post/${post.id}`).then((res) => {
+                            http.delete(`/Post/admin/${post.id}`).then((res) => {
                                 console.log(res.data)
                                 handleClose()
                             });
