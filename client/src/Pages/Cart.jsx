@@ -13,12 +13,14 @@ function Cart() {
     const { user } = useContext(UserContext);
 
     const [cartList, setCartList] = useState([]);
+    const [deleteTrigger, setDeleteTrigger] = useState(false);
+
     useEffect(() => {
         http.get(`/Cart`).then((res) => {
             setCartList(res.data);
             console.log(res.data)
         })
-    }, [])
+    }, [deleteTrigger])
 
     const calculateTotalPrice = () => {
         return cartList.reduce((total, cartItem) => {
@@ -38,6 +40,27 @@ function Cart() {
         }
     };
 
+    const handleDelete = (cartItemId) => {
+        try {
+            http.delete(`/Cart/${cartItemId}`).then((res) => {
+                console.log(res.data)
+                setDeleteTrigger(!deleteTrigger)
+            })
+        } catch (error) {
+            console.error('Error during checkout:', error);
+        }
+    };
+
+    const handleDeleteAll = () => {
+        try {
+            http.delete(`/Cart`).then((res) => {
+                console.log(res.data)
+                setDeleteTrigger(!deleteTrigger)
+            })
+        } catch (error) {
+            console.error('Error during checkout:', error);
+        }
+    };
 
     return (
         <Container maxWidth="x1">
@@ -68,13 +91,13 @@ function Cart() {
 
                                 <Grid item xs={2}>
                                     <Typography variant="h6" style={{ textAlign: "right", paddingTop: 15 }}>${cartItem.quantity * cartItem.event.price}</Typography>
-                                    <DeleteIcon sx={{ cursor: 'pointer' }} style={{ paddingLeft: 80, paddingTop: 5 }} />
+                                    <DeleteIcon onClick={() => handleDelete(cartItem.id)} sx={{ cursor: 'pointer' }} style={{ paddingLeft: 80, paddingTop: 5 }} />
                                 </Grid>
                             </Grid>
                         ))}
                     </Box>
                 
-                    <Button style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 10, display: 'block', fontWeight: "bold", color: 'white', backgroundColor:'red', padding: 15  }}>Delete All</Button>
+                    <Button onClick={() => handleDeleteAll()} style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 10, display: 'block', fontWeight: "bold", color: 'white', backgroundColor:'red', padding: 15  }}>Delete All</Button>
                 </Box>
                 <Box border={1} marginTop={15} width={632} marginLeft={20}>
                     <Box border={0} height={64} width={632} style={{ backgroundColor: '#000000', }}>
