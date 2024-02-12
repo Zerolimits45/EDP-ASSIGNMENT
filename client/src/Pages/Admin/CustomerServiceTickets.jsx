@@ -16,6 +16,13 @@ function RenderButton(props) {
         setOpen(false);
     };
 
+    const handleCompleteBooking = () => {
+        http.put(`/Ticket/${ticket.id}`)
+            .then((res) => {
+                console.log(res.data)
+            })
+    }
+
     return (
         <>
             <Button
@@ -27,14 +34,14 @@ function RenderButton(props) {
                 Delete
             </Button>
             {
-                ticket.status == "Ongoing" && (
+                ticket.status == "Open" && (
                     <Button
                         variant="contained"
                         size="small"
                         style={{ marginLeft: 16, backgroundColor: '#228B22' }}
-                        onClick={handleCompleteBooking} // u need to change this
+                        onClick={handleCompleteBooking}
                     >
-                        Complete Request
+                        Complete
                     </Button>
                 )
             }

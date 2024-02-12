@@ -4,10 +4,46 @@ import { Dropdown } from '@mui/base/Dropdown';
 import { MenuButton } from '@mui/base/MenuButton';
 import { Menu } from '@mui/base/Menu';
 import { MenuItem } from '@mui/base/MenuItem'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+import http from '../http.js';
+
 
 function ContactUs() {
     const btnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
+
+    const navigate = useNavigate()
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            title: '',
+            description: '',
+            category: 'Feedback',
+        },
+        validationSchema: yup.object({
+            name: yup.string().trim().min(3).max(100).required(),
+            email: yup.string().trim().email('Email must be valid')
+                .max(50, 'Email must be at most 50 characters')
+                .required('Email is required'),
+            title: yup.string().trim().min(3).max(100).required(),
+            description: yup.string().trim().min(3).max(500).required()
+        }),
+        onSubmit: (data) => {
+            data.name = data.name.trim();
+            data.email = data.email.trim();
+            data.title = data.title.trim();
+            data.description = data.description.trim();
+            data.category = "Feedback"
+            http.post('/Ticket', data)
+                .then((res) => {
+                    console.log(res.data)
+                    navigate("/")
+                })
+        },
+    });
+
     return (
         <Container maxWidth="xl" >
             <Box style={{ backgroundImage: 'url("../Images/contactusbgimage.png")', backgroundSize: 'cover', borderRadius: 15 }} display={'flex'} flexDirection={'column'}>
@@ -35,7 +71,7 @@ function ContactUs() {
                 <Box display={'flex'} flexDirection={'column'}>
                     <Grid container spacing={15} marginTop={5} justifyContent="center">
                         <Grid item xs={12} md={4} >
-                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: 'white'}} display={'flex'} flexDirection={'column'}>
+                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: 'white' }} display={'flex'} flexDirection={'column'}>
                                 <Box style={{ justifyContent: "center", paddingTop: 30 }} display={'flex'} >
                                     <img src="../images/ContactUsLogo1.png" style={{ width: '20%', borderRadius: '10px' }} />
                                 </Box>
@@ -56,7 +92,7 @@ function ContactUs() {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={4} >
-                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: 'white'}} display={'flex'} flexDirection={'column'}>
+                            <Box style={{ backgroundSize: 'cover', borderRadius: 15, backgroundColor: 'white' }} display={'flex'} flexDirection={'column'}>
                                 <Box style={{ justifyContent: "center", paddingTop: 30 }} display={'flex'} >
                                     <img src="../images/ContactUsLogo2.png" style={{ width: '20%', borderRadius: '10px' }} />
                                 </Box>
@@ -82,7 +118,7 @@ function ContactUs() {
                                 <Typography variant="h5" style={{ textAlign: "center", fontWeight: "bold", paddingTop: 60, color: "black", paddingLeft: 20, paddingRight: 20, }}>
                                     Leave us some Feedback!
                                 </Typography>
-                                <Box component="form" display={'flex'} flexDirection={'column'}>
+                                <Box component="form" onSubmit={formik.handleSubmit} display={'flex'} flexDirection={'column'}>
                                     <Card>
                                         <CardContent>
 
@@ -92,7 +128,10 @@ function ContactUs() {
                                                         label="Name"
                                                         name='name'
                                                         fullWidth
-
+                                                        onChange={formik.handleChange}
+                                                        value={formik.values.name}
+                                                        error={formik.touched.name && Boolean(formik.errors.name)}
+                                                        helperText={formik.touched.name && formik.errors.name}
                                                     />
                                                 </Grid>
                                                 <Grid item xs={12} md={6}>
@@ -100,15 +139,34 @@ function ContactUs() {
                                                         label="Email"
                                                         name='email'
                                                         fullWidth
+                                                        onChange={formik.handleChange}
+                                                        value={formik.values.email}
+                                                        error={formik.touched.email && Boolean(formik.errors.email)}
+                                                        helperText={formik.touched.email && formik.errors.email}
                                                     />
                                                 </Grid>
                                                 <Grid item xs={12} md={12}>
                                                     <TextField
-                                                        label="Reason"
-                                                        name='reason'
+                                                        label="Title"
+                                                        name='title'
+                                                        fullWidth
+                                                        onChange={formik.handleChange}
+                                                        value={formik.values.title}
+                                                        error={formik.touched.title && Boolean(formik.errors.title)}
+                                                        helperText={formik.touched.title && formik.errors.title}
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={12} md={12}>
+                                                    <TextField
+                                                        label="Description"
+                                                        name='description'
                                                         multiline
                                                         rows={4}
                                                         fullWidth
+                                                        onChange={formik.handleChange}
+                                                        value={formik.values.description}
+                                                        error={formik.touched.description && Boolean(formik.errors.description)}
+                                                        helperText={formik.touched.description && formik.errors.description}
                                                     />
                                                 </Grid>
                                             </Grid>
