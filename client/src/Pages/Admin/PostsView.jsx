@@ -7,6 +7,7 @@ import http from '../../http'
 
 function RenderButton(props) {
     const { post } = props;
+    const buttonElement = React.useRef(null);
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -24,7 +25,7 @@ function RenderButton(props) {
                 variant="contained"
                 size="small"
                 style={{ backgroundColor: '#6CA0DC' }}
-
+                LinkComponent={Link} to={`/admin/admineditpost/${post.id}`}
             >
                 Edit Post
             </Button>
@@ -32,7 +33,7 @@ function RenderButton(props) {
             <Button
                 variant="contained"
                 size="small"
-                style={{ backgroundColor: '#C70000' }}
+                style={{ marginLeft: 16, backgroundColor: '#C70000' }}
                 onClick={handleOpen}
             >
                 Delete
@@ -54,7 +55,7 @@ function RenderButton(props) {
                     </Button>
                     <Button variant="contained" color="error"
                         onClick={() => {
-                            http.delete(`/Post/${post.id}`).then((res) => {
+                            http.delete(`/Post/admin/${post.id}`).then((res) => {
                                 console.log(res.data)
                                 handleClose()
                             });
@@ -77,7 +78,7 @@ function PostsView() {
         { field: 'description', headerName: 'Description', width: 300 },
         { field: 'likes', headerName: 'Likes', width: 70 },
         { field: 'createdAt', headerName: 'CreatedAt', width: 100 },
-        { field: 'updatedAt', headerName: 'UpdatedAt', width: 100 },
+        { field: 'user', headerName: 'User', width: 100 },
         { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton post={params.row} /> },
 
     ];
@@ -88,7 +89,7 @@ function PostsView() {
         description: post.description,
         likes: post.likes,
         createdAt: new Date(post.createdAt).toLocaleDateString(),
-        updatedAt: new Date(post.updatedAt).toLocaleDateString(),
+        user: post.user.name,
     }));
 
     const getPosts = () => {

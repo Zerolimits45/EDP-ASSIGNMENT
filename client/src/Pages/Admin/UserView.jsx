@@ -93,6 +93,7 @@ function UserView() {
         name: user.name,
         email: user.email,
         phone: user.contact,
+        address: user.address
     }));
 
     const columns = [
