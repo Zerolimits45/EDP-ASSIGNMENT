@@ -5,15 +5,15 @@ function UserEdit() {
   const btnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
   return (
     <Container maxWidth='xl'>
-    <Typography variant='h6' color="white" marginBottom={2}>
+    <Typography variant='h6' color="black" marginBottom={2}>
         Edit User details
     </Typography>
     <Box component="form">
         <Card>
             <CardContent>
-                <Grid container spacing={2} sx={{width: "100%"}}>
+                <Grid container spacing={2}>
                     <Grid item xs={12} md={4}>
-                        <TextField
+                        <TextField 
                             label="Name"
                             name="name"
                             fullWidth
@@ -30,14 +30,14 @@ function UserEdit() {
                         <TextField
                             label="Phone"
                             name="phone"
-                            fullwidth
+                            fullWidth
                         />
                     </Grid>
                     <Grid item xs={12} md={12}>
                         <TextField
                             label="Address"
                             name="address"
-                            fullwidth
+                            fullWidth
                         />
                     </Grid>
                 </Grid>

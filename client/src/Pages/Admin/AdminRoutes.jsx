@@ -8,6 +8,8 @@ import UserEdit from './UserEdit'
 import OrdersView from './OrdersView'
 import OrderItems from './OrderItems'
 import PostsView from './PostsView'
+import AddAdminPost from './AddAdminPost'
+import AdminEditPost from './AdminEditPost'
 import EventsView from './EventsView'
 import CustomerServiceTickets from './CustomerServiceTickets'
 
@@ -80,6 +82,8 @@ function ProfileRoutes() {
                         <Route path='/vieworders' element={<OrdersView />} />
                         <Route path='/orderitems' element={<OrderItems />} />
                         <Route path='/viewposts' element={<PostsView />} />
+                        <Route path='/addadminpost' element={<AddAdminPost />} />
+                        <Route path='/admineditpost' element={<AdminEditPost />} />
                         <Route path='/customerserviceticket' element={<CustomerServiceTickets />} />
                         <Route path='/viewevents' element={<EventsView />} />
                     </Routes>

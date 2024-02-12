@@ -18,6 +18,17 @@ function RenderButton(props) {
 
     return (
         <>
+
+            <Button
+                ref={buttonElement}
+                variant="contained"
+                size="small"
+                style={{ backgroundColor: '#6CA0DC' }}
+
+            >
+                Edit Post
+            </Button>
+
             <Button
                 variant="contained"
                 size="small"
@@ -29,7 +40,7 @@ function RenderButton(props) {
 
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>
-                    Delete Feedback
+                    Delete Post
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -57,6 +68,7 @@ function RenderButton(props) {
 }
 
 function PostsView() {
+    const btnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
     const [postList, setPostList] = useState([]);
 
     const columns = [
@@ -91,6 +103,7 @@ function PostsView() {
 
     return (
         <>
+            <Button variant='contained' style={btnstyle} LinkComponent={Link} to={`/admin/addadminpost`}>Add Admin Post</Button>
             <div style={{ width: '100%', backgroundColor: 'white' }}>
                 <DataGrid
                     rows={rows}
