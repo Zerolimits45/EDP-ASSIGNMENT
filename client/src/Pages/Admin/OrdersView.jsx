@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import { Button } from '@mui/material'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
+import http from '../../http'
 
 function RenderButton(props) {
     const { hasFocus, value, user } = props;
@@ -37,7 +38,7 @@ function RenderButton(props) {
                 style={{ backgroundColor: '#6CA0DC' }}
             //   LinkComponent={Link} to={`/admin/users/edit/${user.id}`}
             >
-                Edit
+                View Items
             </Button>
 
             <Button
@@ -83,37 +84,59 @@ function RenderButton(props) {
     );
 }
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 30 },
-    { field: 'EventName', headerName: 'Event Name', width: 200 },
-    { field: 'MerchantName', headerName: 'Merchant Name', width: 200 },
-    { field: 'startdate', headerName: 'Start Date', width: 100 },
-    { field: 'enddate', headerName: 'End Date', width: 100 },
-    { field: 'price', headerName: 'Price', width: 100 },
-    { field: 'action', headerName: 'Actions', width: 500, renderCell: (params) => <RenderButton booking={params.row} /> },
-];
-
-const rows = "" ;
-
 function OrdersView() {
-  return (
-    <>
-    <div style={{ width: '100%', backgroundColor: 'white' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{ height: 500 }}
-      />
-    </div>
-  </>
-  )
+    const [orderList, setOrderList] = useState([]);
+
+    const calculateTotalPrice = (order) => {
+        return order.cartItems.reduce((total, cartItem) => {
+            return total + cartItem.quantity * cartItem.event.price;
+        }, 0);
+    };
+
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 30 },
+        { field: 'status', headerName: 'Status', width: 100 },
+        { field: 'email', headerName: 'User Email', width: 150 },
+        { field: 'number', headerName: 'Number of Items in Order', width: 250 },
+        { field: 'price', headerName: 'Total Price', width: 100 },
+        { field: 'action', headerName: 'Actions', width: 500, renderCell: (params) => <RenderButton booking={params.row} /> },
+    ];
+    
+    const rows = orderList.map((order) => ({
+        id: order.id,
+        status: order.status,
+        email: order.user.email,
+        number: order.cartItems.length,
+        price: calculateTotalPrice(order)
+    }));
+
+    const getOrders = () => {
+        http.get(`/Order`).then((res) => {
+            setOrderList(res.data);
+        });
+    };
+
+    useEffect(() => {
+        getOrders();
+    }, []);
+    return (
+        <>
+            <div style={{ width: '100%', backgroundColor: 'white' }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                    sx={{ height: 500 }}
+                />
+            </div>
+        </>
+    )
 }
 
 export default OrdersView

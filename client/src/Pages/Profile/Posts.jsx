@@ -23,12 +23,14 @@ function Posts() {
 
   const { user } = useContext(UserContext);
   const [postList, setPostList] = useState([]);
+  const [deleteTrigger, setDeleteTrigger] = useState(false);
+
   useEffect(() => {
     http.get(`/Post/User`).then((res) => {
       setPostList(res.data);
       console.log(res.data)
     })
-  }, [postList])
+  }, [deleteTrigger])
 
   return (
     <Container maxWidth="xl" >
@@ -92,6 +94,7 @@ function Posts() {
                                   onClick={() => {
                                     http.delete(`/Post/${selectedPostId}`).then((res) => {
                                       console.log(res.data)
+                                      setDeleteTrigger(!deleteTrigger)
                                       handleClose()
                                     })
                                   }}
