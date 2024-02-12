@@ -78,7 +78,7 @@ function ProfileRoutes() {
                         <Route path="/viewusers/edit/:id" element={<UserEdit />} />
                         <Route path='/viewusers' element={<UserView />} />
                         <Route path='/vieworders' element={<OrdersView />} />
-                        <Route path='/orderitems' element={<OrderItems />} />
+                        <Route path='/orderitems/:id' element={<OrderItems />} />
                         <Route path='/viewposts' element={<PostsView />} />
                         <Route path='/customerserviceticket' element={<CustomerServiceTickets />} />
                         <Route path='/viewevents' element={<EventsView />} />
