@@ -4,6 +4,7 @@ import { MarginTwoTone } from '@mui/icons-material'
 import { Link, useNavigate } from 'react-router-dom'
 import http from '../../http.js';
 import UserContext from '../../contexts/UserContext.js';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 
@@ -47,9 +48,12 @@ function Posts() {
                           <Typography variant='h5' fontWeight={600}>
                             {post.title}
                           </Typography>
-                          <Typography variant='h6'>
-                            Messages number
-                          </Typography>
+                          <Box style={{ display: 'flex', alignItems: 'center' }}>
+                            <FavoriteIcon color="error" />
+                            <Typography variant='h6' style={{marginLeft: '10px'}}>
+                              {post.likes}
+                            </Typography>
+                          </Box>
                           <Divider style={dividerstyle} />
                           <Box style={{ display: 'flex', flexDirection: 'row' }}>
                             <Link to={`/forum/viewpost/${post.id}`} style={{ textDecoration: 'none' }}>

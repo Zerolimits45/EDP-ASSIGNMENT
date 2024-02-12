@@ -6,7 +6,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import http from '../../http'
 
 function RenderButton(props) {
-    const { feedback } = props;
+    const { ticket } = props;
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -43,10 +43,10 @@ function RenderButton(props) {
                     </Button>
                     <Button variant="contained" color="error"
                         onClick={() => {
-                            // http.delete(`/profile/help/${feedback.id}`).then((res) => {
-                            //     console.log(res.data)
-                            //     navigate('/admin/feedback')
-                            // });
+                            http.delete(`/Ticket/${ticket.id}`).then((res) => {
+                                console.log(res.data)
+                                handleClose()
+                            });
                         }}>
                         Delete
                     </Button>
@@ -67,7 +67,7 @@ function CustomerServiceTickets() {
         { field: 'description', headerName: 'Description', width: 200 },
         { field: 'category', headerName: 'Category', width: 100 },
         { field: 'status', headerName: 'Status', width: 100 },
-        { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} /> },
+        { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton ticket={params.row} /> },
 
     ];
 
@@ -89,7 +89,7 @@ function CustomerServiceTickets() {
 
     useEffect(() => {
         getTickets();
-    }, []);
+    }, [ticketList]);
 
 
     return (

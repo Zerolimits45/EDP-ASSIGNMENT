@@ -108,15 +108,15 @@ function Forum() {
                                                     </Typography>
                                                 </Link>
                                             </Grid>
-                                            <Grid item xs={1}>
-                                                <Button onClick={() => handleLike(post.id)}>
-                                                    {likedPosts.includes(post.id) ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
-                                                </Button>
-                                            </Grid>
-                                            <Grid item xs={1}>
-                                                <Typography>
-                                                    {post.likes}
-                                                </Typography>
+                                            <Grid item xs={2}>
+                                                <Box style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <Button onClick={() => handleLike(post.id)}>
+                                                        {likedPosts.includes(post.id) ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}
+                                                    </Button>                                                    
+                                                    <Typography variant='h6' style={{ marginLeft: '10px' }}>
+                                                        {post.likes}
+                                                    </Typography>
+                                                </Box>
                                             </Grid>
                                         </Grid>
                                         <Typography variant="h7" style={{ color: "black", textAlign: 'left', fontSize: 15, marginTop: 10 }}>
