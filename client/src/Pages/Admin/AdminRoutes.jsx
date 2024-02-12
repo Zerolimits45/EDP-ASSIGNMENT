@@ -12,12 +12,14 @@ import AddAdminPost from './AddAdminPost'
 import AdminEditPost from './AdminEditPost'
 import EventsView from './EventsView'
 import CustomerServiceTickets from './CustomerServiceTickets'
+import Dashboard from './Dashboard'
 
 //icons
 import CreateIcon from '@mui/icons-material/Create';
 import EventIcon from '@mui/icons-material/Event';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 
 
@@ -28,6 +30,15 @@ function ProfileRoutes() {
                 <Grid item xs={12} sm={3}>
                     <Card>
                         <List>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <DashboardIcon color='primary' />
+                                </ListItemIcon>
+                                <ListItemButton LinkComponent={Link} to='/admin/dashboard' >
+                                    <ListItemText primary="Dashboard" />
+                                </ListItemButton>
+                            </ListItem>
+                            <Divider />
                             <ListItem>
                                 <ListItemIcon>
                                     <CreateIcon color='primary' />
@@ -77,6 +88,7 @@ function ProfileRoutes() {
                 </Grid>
                 <Grid item xs={12} sm={9}>
                     <Routes>
+                        <Route path='/dashboard' element={<Dashboard />} />
                         <Route path="/viewusers/edit/:id" element={<UserEdit />} />
                         <Route path='/viewusers' element={<UserView />} />
                         <Route path='/vieworders' element={<OrdersView />} />
