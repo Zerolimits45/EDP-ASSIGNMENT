@@ -6,6 +6,7 @@ import { Link, Routes, Route } from 'react-router-dom'
 import UserView from './UserView'
 import UserEdit from './UserEdit'
 import OrdersView from './OrdersView'
+import OrderItems from './OrderItems'
 import PostsView from './PostsView'
 import EventsView from './EventsView'
 import CustomerServiceTickets from './CustomerServiceTickets'
@@ -77,6 +78,7 @@ function ProfileRoutes() {
                         <Route path="/viewusers/edit/:id" element={<UserEdit />} />
                         <Route path='/viewusers' element={<UserView />} />
                         <Route path='/vieworders' element={<OrdersView />} />
+                        <Route path='/orderitems' element={<OrderItems />} />
                         <Route path='/viewposts' element={<PostsView />} />
                         <Route path='/customerserviceticket' element={<CustomerServiceTickets />} />
                         <Route path='/viewevents' element={<EventsView />} />
