@@ -25,7 +25,7 @@ function RenderButton(props) {
                 variant="contained"
                 size="small"
                 style={{ backgroundColor: '#6CA0DC' }}
-
+                LinkComponent={Link} to={`/admin/admineditpost/${post.id}`}
             >
                 Edit Post
             </Button>
@@ -78,7 +78,7 @@ function PostsView() {
         { field: 'description', headerName: 'Description', width: 300 },
         { field: 'likes', headerName: 'Likes', width: 70 },
         { field: 'createdAt', headerName: 'CreatedAt', width: 100 },
-        { field: 'updatedAt', headerName: 'UpdatedAt', width: 100 },
+        { field: 'user', headerName: 'User', width: 100 },
         { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton post={params.row} /> },
 
     ];
@@ -89,7 +89,7 @@ function PostsView() {
         description: post.description,
         likes: post.likes,
         createdAt: new Date(post.createdAt).toLocaleDateString(),
-        updatedAt: new Date(post.updatedAt).toLocaleDateString(),
+        user: post.user.name,
     }));
 
     const getPosts = () => {

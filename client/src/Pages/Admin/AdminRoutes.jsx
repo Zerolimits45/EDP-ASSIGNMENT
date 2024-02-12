@@ -83,7 +83,7 @@ function ProfileRoutes() {
                         <Route path='/orderitems/:id' element={<OrderItems />} />
                         <Route path='/viewposts' element={<PostsView />} />
                         <Route path='/addadminpost' element={<AddAdminPost />} />
-                        <Route path='/admineditpost' element={<AdminEditPost />} />
+                        <Route path='/admineditpost/:id' element={<AdminEditPost />} />
                         <Route path='/customerserviceticket' element={<CustomerServiceTickets />} />
                         <Route path='/viewevents' element={<EventsView />} />
                     </Routes>
