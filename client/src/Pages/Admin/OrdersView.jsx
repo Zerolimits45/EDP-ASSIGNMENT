@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
@@ -6,7 +6,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import http from '../../http'
 
 function RenderButton(props) {
-    const { hasFocus, value, user } = props;
+    const { hasFocus, value, order } = props;
     const buttonElement = React.useRef(null);
     const rippleRef = React.useRef(null);
 
@@ -36,7 +36,7 @@ function RenderButton(props) {
                 variant="contained"
                 size="small"
                 style={{ backgroundColor: '#6CA0DC' }}
-            //   LinkComponent={Link} to={`/admin/users/edit/${user.id}`}
+                LinkComponent={Link} to={`/admin/orderitems/${order.id}`}
             >
                 View Items
             </Button>
@@ -68,10 +68,11 @@ function RenderButton(props) {
                     </Button>
                     <Button variant="contained" color="error"
                         onClick={() => {
-                            // http.delete(`/user/${user.id}`).then((res) => {
-                            //   console.log(res.data)
-                            //   navigate('/admin/dashboard')
-                            // });
+                            http.delete(`/Order/${order.id}`).then((res) => {
+                                console.log(res.data)
+                                navigate('/admin/vieworders')
+                                handleClose()
+                            });
                         }}>
                         Delete
                     </Button>
@@ -99,9 +100,9 @@ function OrdersView() {
         { field: 'email', headerName: 'User Email', width: 150 },
         { field: 'number', headerName: 'Number of Items in Order', width: 250 },
         { field: 'price', headerName: 'Total Price', width: 100 },
-        { field: 'action', headerName: 'Actions', width: 500, renderCell: (params) => <RenderButton booking={params.row} /> },
+        { field: 'action', headerName: 'Actions', width: 500, renderCell: (params) => <RenderButton order={params.row} /> },
     ];
-    
+
     const rows = orderList.map((order) => ({
         id: order.id,
         status: order.status,
@@ -118,7 +119,7 @@ function OrdersView() {
 
     useEffect(() => {
         getOrders();
-    }, []);
+    }, [orderList]);
     return (
         <>
             <div style={{ width: '100%', backgroundColor: 'white' }}>
