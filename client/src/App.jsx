@@ -11,7 +11,6 @@ import Home from './Pages/Home';
 import Categories from './Pages/Categories';
 import Forum from './Pages/Forum';
 import Memberships from './Pages/Memberships';
-import AboutUs from './Pages/AboutUs';
 import ContactUs from './Pages/ContactUs';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
@@ -22,6 +21,7 @@ import MerchantLogin from './Pages/MerchantLogin';
 import RaisedRequest from './Pages/RaisedRequest';
 import ViewPost from './Pages/ViewPost';
 import Cart from './Pages/Cart';
+import FeedbackForm from './Pages/FeedbackForm';
 
 
 //Other routes
@@ -59,8 +59,8 @@ function App() {
         <Route path="/description/:id" element={<Description />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/memberships" element={<Memberships />} />
-        <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/feedbackform" element={<FeedbackForm />} />
 
         {!user && (
           <Route path="/login" element={<Login />} />
