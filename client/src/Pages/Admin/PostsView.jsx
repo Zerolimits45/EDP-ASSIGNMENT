@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
+import http from '../../http'
 
 function RenderButton(props) {
-    const { feedback } = props;
+    const { post } = props;
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -42,10 +43,10 @@ function RenderButton(props) {
                     </Button>
                     <Button variant="contained" color="error"
                         onClick={() => {
-                            // http.delete(`/profile/help/${feedback.id}`).then((res) => {
-                            //     console.log(res.data)
-                            //     navigate('/admin/feedback')
-                            // });
+                            http.delete(`/Post/${post.id}`).then((res) => {
+                                console.log(res.data)
+                                handleClose()
+                            });
                         }}>
                         Delete
                     </Button>
@@ -55,37 +56,57 @@ function RenderButton(props) {
     );
 }
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'name', headerName: 'Name', width: 100 },
-    { field: 'email', headerName: 'Email', width: 100 },
-    { field: 'message', headerName: 'Message', width: 300 },
-    { field: 'createdAt', headerName: 'Created At', width: 100 },
-    { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} /> },
-
-];
-
-const rows = "" ;
-
 function PostsView() {
-  return (
-    <>
-    <div style={{ width: '100%', backgroundColor: 'white' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{ height: 500 }}
-      />
-    </div>
-  </>
-  )
+    const [postList, setPostList] = useState([]);
+
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 70 },
+        { field: 'title', headerName: 'Title', width: 100 },
+        { field: 'description', headerName: 'Description', width: 300 },
+        { field: 'likes', headerName: 'Likes', width: 70 },
+        { field: 'createdAt', headerName: 'CreatedAt', width: 100 },
+        { field: 'updatedAt', headerName: 'UpdatedAt', width: 100 },
+        { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton post={params.row} /> },
+
+    ];
+
+    const rows = postList.map((post) => ({
+        id: post.id,
+        title: post.title,
+        description: post.description,
+        likes: post.likes,
+        createdAt: new Date(post.createdAt).toLocaleDateString(),
+        updatedAt: new Date(post.updatedAt).toLocaleDateString(),
+    }));
+
+    const getPosts = () => {
+        http.get(`/Post/All`).then((res) => {
+            setPostList(res.data);
+        });
+    };
+
+    useEffect(() => {
+        getPosts();
+    }, [postList]);
+
+    return (
+        <>
+            <div style={{ width: '100%', backgroundColor: 'white' }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                    sx={{ height: 500 }}
+                />
+            </div>
+        </>
+    )
 }
 
 export default PostsView
