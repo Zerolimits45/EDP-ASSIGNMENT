@@ -10,7 +10,7 @@ import Reviews from './Reviews';
 import ChangePassword from './ChangePassword';
 import ProfileEdit from './ProfileEdit';
 import EditPost from '../EditPost';
-import ProfileOrders from './ProfileOrders';
+import Items from './ProfileItems';
 
 //icons
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -65,7 +65,8 @@ function ProfileRoutes() {
                         <Route path="/posts" element={<Posts />} />
                         <Route path="/changepassword" element={<ChangePassword />} />
                         <Route path="/edit/:id" element={<ProfileEdit />} />
-                        <Route path="/orders" element={<ProfileOrders />} />
+                        <Route path="/orders" element={<Purchases />} />
+                        <Route path="/items" element={<Items />} />
                     </Routes>
                 </Grid>
             </Grid>
