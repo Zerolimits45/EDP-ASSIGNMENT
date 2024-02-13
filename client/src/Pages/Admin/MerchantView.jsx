@@ -35,7 +35,7 @@ function RenderButton(props) {
                 variant="contained"
                 size="small"
                 style={{ backgroundColor: '#6CA0DC' }}
-                LinkComponent={Link} to={`/admin/viewusers/edit/${user.id}`}
+                LinkComponent={Link} to={`/admin/editmerchant`}
             >
                 Edit
             </Button>

@@ -15,6 +15,7 @@ import AdminEditPost from './AdminEditPost'
 import EventsView from './EventsView'
 import CustomerServiceTickets from './CustomerServiceTickets'
 import Dashboard from './Dashboard'
+import EditMerchant from './EditMerchant'
 
 //icons
 import CreateIcon from '@mui/icons-material/Create';
@@ -22,6 +23,7 @@ import EventIcon from '@mui/icons-material/Event';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+
 
 
 
@@ -57,7 +59,7 @@ function ProfileRoutes() {
                                     <CreateIcon color='primary' />
                                 </ListItemIcon>
                                 <ListItemButton LinkComponent={Link} to='/admin/viewmerchant' >
-                                    <ListItemText primary="View All Merhcants" />
+                                    <ListItemText primary="View All Merchants" />
                                 </ListItemButton>
                             </ListItem>
                             <Divider />
@@ -113,6 +115,7 @@ function ProfileRoutes() {
                         <Route path='/viewevents' element={<EventsView />} />
                         <Route path='/viewmerchant' element={<MerchantView />} />
                         <Route path='/addmerchant' element={<AddMerchant />} />
+                        <Route path='/editmerchant' element={<EditMerchant/>} />
                     </Routes>
                 </Grid>
             </Grid>
