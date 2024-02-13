@@ -45,8 +45,9 @@ function App() {
     }
   }, []);
 
-  const isAdmin = user && user.role === 'admin';
-  const isCustomer = user && user.role === 'customer';
+  const isAdmin = user && user.role === 'Admin';
+  const isMerchant = user && user.role === 'Merchant';
+  const isCustomer = user && user.role === 'Customer';
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -64,9 +65,26 @@ function App() {
           <Route path="/login" element={<Login />} />
         )}
 
-        <Route path="/profile/*" element={<ProfileRoutes />} />
-        <Route path="/merchant/*" element={<MerchantRoutes />} />
-        <Route path="/admin/*" element={<AdminRoutes />} />
+        {
+          isCustomer && (
+            <Route path="/profile/*" element={<ProfileRoutes />} />
+          )
+        }
+        {
+          isMerchant && (
+            <Route path="/profile/*" element={<ProfileRoutes />} />
+          )
+        }
+        {
+          isMerchant && (
+            <Route path="/merchant/*" element={<MerchantRoutes />} />
+          )
+        }
+        {
+          isAdmin && (
+            <Route path="/admin/*" element={<AdminRoutes />} />
+          )
+        }
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/addpost" element={<AddPost />} />
@@ -74,7 +92,7 @@ function App() {
         <Route path="/contactus/raisedrequest" element={<RaisedRequest />} />
         <Route path="/forum/viewpost/:id" element={<ViewPost />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/success" element={<Checkout_Success/>} />
+        <Route path="/success" element={<Checkout_Success />} />
 
       </Routes>
     </UserContext.Provider>

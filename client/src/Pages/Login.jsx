@@ -37,7 +37,13 @@ function SignIn() {
                 .then((res) => {
                     localStorage.setItem("accessToken", res.data.accessToken);
                     setUser(res.data.user);
-                    navigate("/")
+                    if (res.data.user.role == "Admin") {
+                        navigate("/admin/dashboard")
+                    } else if (res.data.user.role == "Merchant") {
+                        navigate("/merchant/viewevent")
+                    } else {
+                        navigate("/")
+                    }
                 }).catch((error) => {
                     if (error.response && error.response.status === 400) {
                         const errorMessage = error.response.data.message;
@@ -109,9 +115,9 @@ function SignIn() {
                         </Typography>
                         <Divider sx={{ margin: '1rem 0' }} />
                         <Link to='/merchantlogin'>
-                        <Button variant="contained" fullWidth style={loginbtnstyle}>
-                            Merchant Login
-                        </Button>
+                            <Button variant="contained" fullWidth style={loginbtnstyle}>
+                                Merchant Login
+                            </Button>
                         </Link>
                     </Box>
                 </Paper>
