@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Collapse, Container, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Grid, Card } from '@mui/material'
 import { Link, Routes, Route } from 'react-router-dom'
 
@@ -17,10 +17,13 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
+import UserContext from '../../contexts/UserContext';
 
 
 
 function ProfileRoutes() {
+    const { user } = useContext(UserContext)
+
     return (
         <Container maxWidth='xl'>
             <Grid container spacing={2} marginTop={10}>
@@ -35,25 +38,31 @@ function ProfileRoutes() {
                                     <ListItemText primary="Profile" />
                                 </ListItemButton>
                             </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemIcon>
-                                    <AttachMoneyIcon color='primary' />
-                                </ListItemIcon>
-                                <ListItemButton LinkComponent={Link} to='/profile/purchases' >
-                                    <ListItemText primary="My Purchases" />
-                                </ListItemButton>
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemIcon>
-                                    <LocalPostOfficeIcon color='primary' />
-                                </ListItemIcon>
-                                <ListItemButton LinkComponent={Link} to='/profile/posts' >
-                                    <ListItemText primary="My Posts" />
-                                </ListItemButton>
-                            </ListItem>
-                            <Divider />
+                            {
+                                user.role == "Customer" && (
+                                    <>
+                                        <Divider />
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <AttachMoneyIcon color='primary' />
+                                            </ListItemIcon>
+                                            <ListItemButton LinkComponent={Link} to='/profile/purchases' >
+                                                <ListItemText primary="My Purchases" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <Divider />
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <LocalPostOfficeIcon color='primary' />
+                                            </ListItemIcon>
+                                            <ListItemButton LinkComponent={Link} to='/profile/posts' >
+                                                <ListItemText primary="My Posts" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <Divider />
+                                    </>
+                                )
+                            }
                         </List>
                     </Card>
                 </Grid>
