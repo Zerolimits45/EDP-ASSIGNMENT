@@ -20,7 +20,7 @@ function Profile() {
     const { user, setUser } = useContext(UserContext)
 
     useEffect(() => {
-        http.get(`/user/${user.id}`).then((res) => {
+        http.get(`/User/${user.id}`).then((res) => {
             setUser(res.data)
         });
     }, []);
