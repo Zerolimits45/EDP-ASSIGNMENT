@@ -10,7 +10,6 @@ import http from './http';
 import Home from './Pages/Home';
 import Categories from './Pages/Categories';
 import Forum from './Pages/Forum';
-import Memberships from './Pages/Memberships';
 import ContactUs from './Pages/ContactUs';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
@@ -58,7 +57,6 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/description/:id" element={<Description />} />
         <Route path="/forum" element={<Forum />} />
-        <Route path="/memberships" element={<Memberships />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/feedbackform" element={<FeedbackForm />} />
 
