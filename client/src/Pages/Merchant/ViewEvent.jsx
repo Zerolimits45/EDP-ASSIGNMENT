@@ -1,20 +1,34 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import { Typography, Grid, Container, TextField, Box, Button, Card, CardContent, CardMedia } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import http from '../../http.js';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import dayjs from 'dayjs';
 
 function ViewEvent() {
     const [eventList, setEventList] = useState([]);
-    useEffect(() => {
+    const getEvents = () => {
         http.get(`/Event`).then((res) => {
-            setEventList(res.data);
             console.log(res.data)
-        })
-    }, [])
+            setEventList(res.data);
+        });
+    };
+
+    useEffect(() => {
+        getEvents();
+    }, []);
+
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Container maxWidth="xl" >
@@ -74,9 +88,39 @@ function ViewEvent() {
                                 </Link>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <Button variant="contained" color="primary" fullWidth>
+                                <Button
+                                    variant="contained" color="primary" fullWidth
+                                    onClick={handleOpen}
+                                >
                                     Delete Event
                                 </Button>
+
+                                <Dialog open={open} onClose={handleClose}>
+                                    <DialogTitle>
+                                        Delete Event
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText>
+                                            Are you sure you want to delete this Event?
+                                        </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button variant="contained" color="inherit"
+                                            onClick={handleClose}>
+                                            Cancel
+                                        </Button>
+                                        <Button variant="contained" color="error"
+                                            onClick={() => {
+                                                http.delete(`/Event/${event.id}`).then((res) => {
+                                                    console.log(res.data)
+                                                    handleClose()
+                                                    getEvents()
+                                                });
+                                            }}>
+                                            Delete
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
                             </Grid>
                         </Grid>
                     </CardContent>

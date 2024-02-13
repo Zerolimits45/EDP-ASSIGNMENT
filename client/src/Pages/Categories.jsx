@@ -108,7 +108,7 @@ function Categories() {
 
         <Grid container spacing={3}>
           {eventList
-            .filter((event) => event.category == 'Family bonding')
+            .filter((event) => event.category == 'Family Bonding')
             .map((event) =>
               <Grid item xs={12} md={6} xl={4}>
 
