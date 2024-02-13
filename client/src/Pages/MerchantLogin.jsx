@@ -42,7 +42,7 @@ function MerchantLogin() {
                 .then((res) => {
                     localStorage.setItem("accessToken", res.data.accessToken);
                     setUser(res.data.user);
-                    navigate("/")
+                    navigate("/merchant/viewevent")
                 }).catch((error) => {
                     if (error.response && error.response.status === 400) {
                         const errorMessage = error.response.data.message;
