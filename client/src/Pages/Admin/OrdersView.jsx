@@ -98,8 +98,9 @@ function OrdersView() {
         { field: 'id', headerName: 'ID', width: 30 },
         { field: 'status', headerName: 'Status', width: 100 },
         { field: 'email', headerName: 'User Email', width: 150 },
-        { field: 'number', headerName: 'Number of Items in Order', width: 250 },
+        { field: 'number', headerName: 'No.Of Items', width: 100 },
         { field: 'price', headerName: 'Total Price', width: 100 },
+        { field: 'createdAt', headerName: 'CreatedAt', width: 100 },
         { field: 'action', headerName: 'Actions', width: 500, renderCell: (params) => <RenderButton order={params.row} /> },
     ];
 
@@ -108,7 +109,8 @@ function OrdersView() {
         status: order.status,
         email: order.user.email,
         number: order.cartItems.length,
-        price: calculateTotalPrice(order)
+        price: calculateTotalPrice(order),
+        createdAt: new Date(order.createdAt).toLocaleDateString(),
     }));
 
     const getOrders = () => {
