@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Box, Paper, Grid, Typography, Button, TextField, Divider, Card, CardContent } from '@mui/material'
 import { Dropdown } from '@mui/base/Dropdown';
 import { MenuButton } from '@mui/base/MenuButton';
@@ -8,10 +8,17 @@ import { useNavigate, Link } from 'react-router-dom'
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import http from '../http.js';
+import Chatbot from './Chatbot.jsx';
 
 
 function ContactUs() {
     const btnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
+
+    const [showChatbot, setShowChatbot] = useState(false);
+
+    const toggleChatbot = () => {
+        setShowChatbot(!showChatbot);
+    };
 
     const navigate = useNavigate()
     const formik = useFormik({
@@ -102,7 +109,7 @@ function ContactUs() {
                                 <Typography variant="h7" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 73, paddingLeft: 20, paddingRight: 20, color: "black" }}>
                                     Chat with Annie to get answers for frequently asked questions
                                 </Typography>
-                                <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }}>
+                                <Button variant="contained" color="btn" style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15, }} onClick={() => setShowChatbot(!showChatbot)}>
                                     Chat with Annie
                                 </Button>
                                 <Typography variant="h6" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "black" }}>
@@ -110,6 +117,7 @@ function ContactUs() {
                             </Box>
                         </Grid>
                     </Grid>
+                    {showChatbot && <Chatbot setShowChatbot={setShowChatbot} />}
                 </Box>
                 <Box display={'flex'} flexDirection={'column'}>
                     <Grid container spacing={0} marginTop={5} justifyContent="center">
