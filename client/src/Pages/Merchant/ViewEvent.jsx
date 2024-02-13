@@ -9,6 +9,8 @@ import { useFormik } from 'formik';
 import dayjs from 'dayjs';
 
 function ViewEvent() {
+    const btnstyle = { fontWeight: 'bold', color: 'white', backgroundColor: '#799ae0' }
+    const deletebtnstyle = { fontWeight: 'bold', color: 'white', backgroundColor: 'red' }
     const [eventList, setEventList] = useState([]);
     const getEvents = () => {
         http.get(`/Event`).then((res) => {
@@ -45,12 +47,12 @@ function ViewEvent() {
                     </CardMedia>
                     <CardContent>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} md={6}>
+                            <Grid item xs={12} md={12}>
                                 <Typography variant="h5" marginBottom={2}>
                                     Title: {event.title}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12} md={6}>
+                            <Grid item xs={12} md={4}>
                                 <Typography variant="h6" marginBottom={2}>
                                     Category: {event.category}
                                 </Typography>
@@ -65,7 +67,7 @@ function ViewEvent() {
                                     Capacity: {event.capacity}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12} md={4}>
+                            <Grid item xs={12} md={12}>
                                 <Typography variant="h6" marginBottom={2}>
                                     Address: {event.address}
                                 </Typography>
@@ -75,21 +77,21 @@ function ViewEvent() {
                                     Date: {new Date(event.startDate).toLocaleDateString()} To {new Date(event.endDate).toLocaleDateString()}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={12} md={6}>
+                            <Grid item xs={12} md={12}>
                                 <Typography variant="h6" marginBottom={2}>
                                     Description: {event.description}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <Link to={`/Merchant/EditEvent/${event.id}`}>
-                                    <Button variant="contained" color="primary" fullWidth>
+                                    <Button variant="contained" style={btnstyle} fullWidth>
                                         Edit Event
                                     </Button>
                                 </Link>
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <Button
-                                    variant="contained" color="primary" fullWidth
+                                    variant="contained" style={deletebtnstyle} fullWidth
                                     onClick={handleOpen}
                                 >
                                     Delete Event
