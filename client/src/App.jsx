@@ -20,7 +20,6 @@ import MerchantLogin from './Pages/MerchantLogin';
 import RaisedRequest from './Pages/RaisedRequest';
 import ViewPost from './Pages/ViewPost';
 import Cart from './Pages/Cart';
-import FeedbackForm from './Pages/FeedbackForm';
 
 
 //Other routes
@@ -58,7 +57,6 @@ function App() {
         <Route path="/description/:id" element={<Description />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/feedbackform" element={<FeedbackForm />} />
 
         {!user && (
           <Route path="/login" element={<Login />} />
