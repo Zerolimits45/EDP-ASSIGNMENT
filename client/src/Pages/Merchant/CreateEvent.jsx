@@ -12,6 +12,32 @@ import dayjs from 'dayjs';
 
 function CreateEvent() {
     const btnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
+ 
+    const navigate = useNavigate();
+    const [imageFile, setImageFile] = useState(null);
+    const onFileChange = (e) => {
+        let file = e.target.files[0];
+        if (file) {
+            if (file.size > 1024 * 1024) {
+                console.log("Maximum file size is 1MB")
+                return;
+            }
+            let formData = new FormData();
+            formData.append('file', file);
+            http.post('/file/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then((res) => {
+                    console.log(res.data);
+                    setImageFile(res.data.filename);
+                })
+                .catch(function (error) {
+                    console.log(error.response);
+                });
+        }
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -35,14 +61,18 @@ function CreateEvent() {
             price: yup.number().required('Price is required').positive('Price must be greater than 0')
         }),
         onSubmit: (data) => {
+            if (imageFile) {
+                data.imageFile = imageFile;
+            }
             data.title = data.title.trim();
             data.description = data.description.trim();
             data.address = data.address.trim();
             data.category = data.category.trim();
+
             http.post('/Event', data)
                 .then((res) => {
                     console.log(res.data)
-                    formik.resetForm();
+                    navigate("/merchant/viewevent")
                 }).catch((error) => {
                     if (error.response && error.response.status === 400) {
                         const errorMessages = error.response.data.errors;
@@ -190,6 +220,38 @@ function CreateEvent() {
                         )}
                     </CardContent>
                 </Card>
+
+                <Typography variant='h5' marginTop={10} marginBottom={2}>
+                    Please upload an image of your event
+                </Typography>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={12}>
+                        <Box sx={{ textAlign: 'center', mt: 2 }} >
+                            <Button variant="contained" style={btnstyle} component="label">
+                                Upload Image
+                                <input hidden accept="image/*" multiple type="file"
+                                    onChange={onFileChange}
+                                />
+                            </Button>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} md={12}>
+                        <Card>
+                            <CardContent>
+                                {
+                                    imageFile && (
+                                        <Box className="aspect-ratio-container" sx={{ mt: 2 }}>
+                                            <img alt="event"
+                                                src={`${import.meta.env.VITE_FILE_BASE_URL}${imageFile}`}>
+                                            </img>
+                                        </Box>
+                                    )
+                                }
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+
                 <Button type="submit" variant='contained' style={btnstyle}>Create Event</Button>
             </Box>
         </Container>
