@@ -73,7 +73,7 @@ function Cart() {
                         {cartList.map((cartItem) => (
                             <Grid container direction='row' border={0} justifyContent={'center'} spacing={1}>
                                 <Grid item xs={4} borderRadius={4}>
-                                    <img src="../images/test.png" style={{ width: '100%', borderRadius: '10px' }} />
+                                    <img src={`${import.meta.env.VITE_FILE_BASE_URL}${cartItem.event.imageFile}`} style={{ width: '100%', borderRadius: '10px' }} />
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Typography variant="h6" style={{ textAlign: "left", fontWeight: 'bold' }}>

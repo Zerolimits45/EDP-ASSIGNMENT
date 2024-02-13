@@ -46,7 +46,7 @@ function ProfileItems() {
                                                 <Box
                                                     component="img"
                                                     width="100%"
-                                                    src="../../images/product_test.jpg"
+                                                    src={`${import.meta.env.VITE_FILE_BASE_URL}${order.event.imageFile}`}
                                                     alt=" test image">
                                                 </Box>
                                             </Grid>

@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
+import http from '../../http'
 
 function RenderButton(props) {
-    const { feedback } = props;
+    const { event, getEvents } = props;
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -42,10 +43,11 @@ function RenderButton(props) {
                     </Button>
                     <Button variant="contained" color="error"
                         onClick={() => {
-                            // http.delete(`/profile/help/${feedback.id}`).then((res) => {
-                            //     console.log(res.data)
-                            //     navigate('/admin/feedback')
-                            // });
+                            http.delete(`/Event/Admin/${event.id}`).then((res) => {
+                                console.log(res.data)
+                                handleClose()
+                                getEvents()
+                            });
                         }}>
                         Delete
                     </Button>
@@ -55,35 +57,58 @@ function RenderButton(props) {
     );
 }
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
-    { field: 'name', headerName: 'Event Name', width: 200 },
-    { field: 'companyId', headerName: 'Company ID', width: 100 },
-    { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} /> },
-
-];
-
-const rows = "" ;
-
 function Events() {
-  return (
-    <>
-    <div style={{ width: '100%', backgroundColor: 'white' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{ height: 500 }}
-      />
-    </div>
-  </>
-  )
+    const [eventList, setEventList] = useState([]);
+
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 100 },
+        { field: 'name', headerName: 'Title', width: 100 },
+        { field: 'category', headerName: 'Category', width: 150 },
+        { field: 'startDate', headerName: 'Start Date', width: 150 },
+        { field: 'endDate', headerName: 'End Date', width: 150 },
+        { field: 'companyId', headerName: 'Created By', width: 100 },
+        { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton event={params.row} getEvents={getEvents} /> },
+
+    ];
+
+    const rows = eventList.map((event) => ({
+        id: event.id,
+        name: event.title,
+        category: event.category,
+        startDate: new Date(event.startDate).toLocaleDateString(),
+        endDate: new Date(event.endDate).toLocaleDateString(),
+        companyId: event.user.companyId
+    }));
+
+    const getEvents = () => {
+        http.get(`/Event`).then((res) => {
+            console.log(res.data)
+            setEventList(res.data);
+        });
+    };
+
+    useEffect(() => {
+        getEvents();
+    }, []);
+
+    return (
+        <>
+            <div style={{ width: '100%', backgroundColor: 'white' }}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                        pagination: {
+                            paginationModel: { page: 0, pageSize: 5 },
+                        },
+                    }}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                    sx={{ height: 500 }}
+                />
+            </div>
+        </>
+    )
 }
 
 export default Events
