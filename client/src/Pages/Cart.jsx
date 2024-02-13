@@ -11,9 +11,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cart() {
     const { user } = useContext(UserContext);
-    //styles
-    const btnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: 'red', width: '100%', height: '50px' };
-    const checkoutbtnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: 'green', width: '100%', height: '50px' };
 
     const [cartList, setCartList] = useState([]);
     const [deleteTrigger, setDeleteTrigger] = useState(false);
@@ -68,11 +65,11 @@ function Cart() {
     return (
         <Container maxWidth="x1">
             <Box flexDirection={'row'} display={'flex'} justifyContent={'center'}>
-                <Box border={0} marginTop={15} marginLeft={0}>
-                    <Box border={0} borderRadius={3} style={{ backgroundColor: '#000000' }}>
-                        <Typography variant="h6" style={{ textAlign: "left", padding: '10px', fontWeight: 'bold', color: 'white' }}>My Cart</Typography>
+                <Box border={0} marginTop={15} height={600} width={632} marginLeft={0}>
+                    <Box border={0} borderRadius={3} height={64} width={697} style={{ backgroundColor: '#000000' }}>
+                        <Typography variant="h6" style={{ textAlign: "left", paddingTop: 15, paddingLeft: 20, fontWeight: 'bold', color: 'white' }}>My Cart</Typography>
                     </Box>
-                    <Box border={1} borderRadius={3} padding={4} marginTop={3}>
+                    <Box border={1} borderRadius={3} width={632} height={300} padding={4} marginTop={3}>
                         {cartList.map((cartItem) => (
                             <Grid container direction='row' border={0} justifyContent={'center'} spacing={1}>
                                 <Grid item xs={4} borderRadius={4}>
@@ -99,8 +96,8 @@ function Cart() {
                             </Grid>
                         ))}
                     </Box>
-
-                    <Button onClick={() => handleDeleteAll()} style={btnstyle}>Delete All</Button>
+                
+                    <Button onClick={() => handleDeleteAll()} style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 10, display: 'block', fontWeight: "bold", color: 'white', backgroundColor:'red', padding: 15  }}>Delete All</Button>
                 </Box>
                 <Box border={1} marginTop={15} width={632} marginLeft={20}>
                     <Box border={0} height={64} width={632} style={{ backgroundColor: '#000000', }}>
@@ -133,13 +130,13 @@ function Cart() {
                             </Grid>
                         </Grid>
                     </Box>
-
                 </Box>
-                
             </Box>
-            <Button onClick={handleCheckout} variant="contained" style={checkoutbtnstyle}>
+            <Box maxWidth={110} marginLeft={159} marginTop={5}>
+                <Button onClick={handleCheckout} variant="contained" color='btnGreen' style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block', fontWeight: "bold", color: 'white', padding: 15 }}>
                     Checkout
-            </Button>
+                </Button>
+            </Box>
         </Container>
     )
 }
