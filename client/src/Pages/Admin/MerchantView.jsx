@@ -99,7 +99,7 @@ function MerchantView() {
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'name', headerName: 'Name', width: 100 },
+        { field: 'name', headerName: 'Name', width: 200 },
         { field: 'phone', headerName: 'Phone', width: 100 },
         { field: 'email', headerName: 'Email', width: 200 },
         { field: 'companyId', headerName: 'Company ID', width: 150 },
