@@ -11,7 +11,7 @@ function Checkout_Success() {
             http.post(`/Order/${id}`)
             .then((res) => {
                 console.log(res.data)
-                localStorage.clear("stripeid")
+                localStorage.removeItem("stripeid")
                 navigate("/")
             })
         } else {
