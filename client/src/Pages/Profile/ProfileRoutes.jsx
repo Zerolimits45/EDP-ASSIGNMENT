@@ -40,39 +40,52 @@ function ProfileRoutes() {
                                 </ListItemButton>
                             </ListItem>
 
-                            <Divider />
-                            <ListItem>
-                                <ListItemIcon>
-                                    <AttachMoneyIcon color='primary' />
-                                </ListItemIcon>
-                                <ListItemButton LinkComponent={Link} to='/profile/purchases' >
-                                    <ListItemText primary="My Purchases" />
-                                </ListItemButton>
-                            </ListItem>
-                            <Divider />
-                            <ListItem>
-                                <ListItemIcon>
-                                    <LocalPostOfficeIcon color='primary' />
-                                </ListItemIcon>
-                                <ListItemButton LinkComponent={Link} to='/profile/posts' >
-                                    <ListItemText primary="My Posts" />
-                                </ListItemButton>
-                            </ListItem>
-                            <Divider />
+                            {
+                                user.role == "Customer" && (
+                                    <>
+                                        <Divider />
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <AttachMoneyIcon color='primary' />
+                                            </ListItemIcon>
+                                            <ListItemButton LinkComponent={Link} to='/profile/purchases' >
+                                                <ListItemText primary="My Purchases" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <Divider />
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <LocalPostOfficeIcon color='primary' />
+                                            </ListItemIcon>
+                                            <ListItemButton LinkComponent={Link} to='/profile/posts' >
+                                                <ListItemText primary="My Posts" />
+                                            </ListItemButton>
+                                        </ListItem>
+                                        <Divider />
+                                    </>
+                                )
+                            }
 
                         </List>
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={9}>
                     <Routes>
-                        <Route path="/editpost/:id" element={<EditPost />} />
                         <Route path="/profile" element={<Profile />} />
-                        <Route path="/purchases" element={<Purchases />} />
-                        <Route path="/posts" element={<Posts />} />
                         <Route path="/changepassword" element={<ChangePassword />} />
                         <Route path="/edit/:id" element={<ProfileEdit />} />
-                        <Route path="/orders" element={<Purchases />} />
-                        <Route path="/items/:id" element={<Items />} />
+
+                        {
+                            user.role == "Customer" && (
+                                <>
+                                    <Route path="/editpost/:id" element={<EditPost />} />
+                                    <Route path="/purchases" element={<Purchases />} />
+                                    <Route path="/posts" element={<Posts />} />
+                                    <Route path="/orders" element={<Purchases />} />
+                                    <Route path="/items/:id" element={<Items />} />
+                                </>
+                            )
+                        }
                     </Routes>
                 </Grid>
             </Grid>

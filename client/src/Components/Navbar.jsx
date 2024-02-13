@@ -13,7 +13,9 @@ function Navbar() {
         window.location = "/";
     };
     const { user, setUser } = useContext(UserContext);
-
+    const isAdmin = user && user.role === 'Admin';
+    const isMerchant = user && user.role === 'Merchant';
+    const isCustomer = user && user.role === 'Customer';
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" elevation={0} style={{ backgroundColor: 'white', color: 'black' }}>
@@ -30,25 +32,40 @@ function Navbar() {
                     </IconButton>
 
 
-
                     <Box marginLeft={"1rem"} display={["none", "none", "flex"]} sx={{ flexGrow: 1 }}>
                         <img src="../../Images/logo_uplay.png" alt="logo" style={{ height: "30px", width: "90px" }} />
-                        <Button color="inherit" LinkComponent={Link} to='/' sx={{ fontWeight: 'bold' }}>Home</Button>
-                        <Button color="inherit" LinkComponent={Link} to='/categories' sx={{ fontWeight: 'bold' }}>Categories</Button>
-                        <Button color="inherit" LinkComponent={Link} to='/contactus' sx={{ fontWeight: 'bold' }}>Contact Us</Button>
-                        <Button color="inherit" LinkComponent={Link} to='/forum' sx={{ fontWeight: 'bold' }}>Forum</Button>
-                        <Button color="inherit" LinkComponent={Link} to='/merchant' sx={{ fontWeight: 'bold' }}>Merchant test</Button>
-                        <Button color="inherit" LinkComponent={Link} to='/admin/dashboard' sx={{ fontWeight: 'bold' }}>Admin test</Button>
+                        {(isCustomer || !user) && (
+                            <>
+                                <Button color="inherit" LinkComponent={Link} to='/' sx={{ fontWeight: 'bold' }}>Home</Button>
+                                <Button color="inherit" LinkComponent={Link} to='/categories' sx={{ fontWeight: 'bold' }}>Categories</Button>
+                                <Button color="inherit" LinkComponent={Link} to='/contactus' sx={{ fontWeight: 'bold' }}>Contact Us</Button>
+                                <Button color="inherit" LinkComponent={Link} to='/forum' sx={{ fontWeight: 'bold' }}>Forum</Button>
+                            </>
+                        )}
+                        {isMerchant && (
+                            <Button color="inherit" LinkComponent={Link} to='/merchant/viewevent' sx={{ fontWeight: 'bold' }}>Merchant</Button>
+                        )}
+                        {isAdmin && (
+                            <Button color="inherit" LinkComponent={Link} to='/admin/dashboard' sx={{ fontWeight: 'bold' }}>Admin</Button>
+                        )}
                     </Box>
                     <>
-                        <ShoppingCartIcon style={{ color: "black" }} />
-                        <Button color="inherit" LinkComponent={Link} to='/cart' sx={{ fontWeight: 'bold' }}>Cart</Button>
-                        {user && (
+                        {isCustomer && (
+                            <>
+                                <ShoppingCartIcon style={{ color: "black" }} />
+                                <Button color="inherit" LinkComponent={Link} to='/cart' sx={{ fontWeight: 'bold' }}>Cart</Button>
+                                <AccountCircle style={{ color: 'black' }} />
+                                <Button color="inherit" sx={{ fontWeight: 'bold' }} LinkComponent={Link} to={`/profile/profile`}>{user.name}</Button>
+                            </>
+                        )}
+                        {isMerchant && (
                             <>
                                 <AccountCircle style={{ color: 'black' }} />
                                 <Button color="inherit" sx={{ fontWeight: 'bold' }} LinkComponent={Link} to={`/profile/profile`}>{user.name}</Button>
-                                <Button onClick={logout} color="inherit" sx={{ fontWeight: 'bold' }}>Logout</Button>
                             </>
+                        )}
+                        {user && (
+                            <Button onClick={logout} color="inherit" sx={{ fontWeight: 'bold' }}>Logout</Button>
                         )}
                         {!user && (
                             <>
