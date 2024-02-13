@@ -40,13 +40,6 @@ function Purchases() {
                       Date
                     </Typography>
                     <Divider style={dividerstyle} />
-                    <Button
-                      variant='contained'
-                      color='btn'
-                      style={btnstyle}
-                    >
-                      Review Experience
-                    </Button>
                   </Box>
                 </Grid>
               </Grid>
