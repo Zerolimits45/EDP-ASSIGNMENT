@@ -5,6 +5,8 @@ import { Link, Routes, Route } from 'react-router-dom'
 //Pages
 import UserView from './UserView'
 import UserEdit from './UserEdit'
+import MerchantView from './MerchantView'
+import AddMerchant from './AddMerchant'
 import OrdersView from './OrdersView'
 import OrderItems from './OrderItems'
 import PostsView from './PostsView'
@@ -20,6 +22,8 @@ import EventIcon from '@mui/icons-material/Event';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+
+
 
 
 
@@ -45,6 +49,15 @@ function ProfileRoutes() {
                                 </ListItemIcon>
                                 <ListItemButton LinkComponent={Link} to='/admin/viewusers' >
                                     <ListItemText primary="View All Users" />
+                                </ListItemButton>
+                            </ListItem>
+                            <Divider />
+                            <ListItem>
+                                <ListItemIcon>
+                                    <CreateIcon color='primary' />
+                                </ListItemIcon>
+                                <ListItemButton LinkComponent={Link} to='/admin/viewmerchant' >
+                                    <ListItemText primary="View All Merhcants" />
                                 </ListItemButton>
                             </ListItem>
                             <Divider />
@@ -98,6 +111,8 @@ function ProfileRoutes() {
                         <Route path='/admineditpost/:id' element={<AdminEditPost />} />
                         <Route path='/customerserviceticket' element={<CustomerServiceTickets />} />
                         <Route path='/viewevents' element={<EventsView />} />
+                        <Route path='/viewmerchant' element={<MerchantView />} />
+                        <Route path='/addmerchant' element={<AddMerchant />} />
                     </Routes>
                 </Grid>
             </Grid>
