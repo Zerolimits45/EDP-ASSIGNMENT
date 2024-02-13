@@ -183,7 +183,7 @@ function ContactUs() {
                                         </CardContent>
                                     </Card>
                                     <Button type='submit' color='btn' variant="contained" style={btnstyle} justifyContent="center">
-                                        Send your help request
+                                        Send your feedback
                                     </Button>
                                 </Box>
                                 <Typography variant="h6" style={{ textAlign: "center", paddingTop: 20, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, color: "white" }}>

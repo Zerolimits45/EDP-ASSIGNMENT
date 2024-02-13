@@ -47,7 +47,7 @@ function Description() {
         },
     });
     return (
-        <Box>
+        <Container maxWidth='xl'>
             <Card>
                 <CardMedia
                     component="img"
@@ -74,19 +74,23 @@ function Description() {
                         <Typography variant="h6" style={{ paddingTop: 20 }}>
                             Capacity: {event.capacity}
                         </Typography>
+                        <Typography variant="h5" style={{ paddingTop: 20, fontWeight: 'bold' }}>
+                           Description
+                        </Typography>
+                        <Typography variant="h6" style={{ paddingTop: 20 }}>
+                            {event.description}
+                        </Typography>
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <Box component="form" onSubmit={formik.handleSubmit} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
                         <Paper elevation={3} sx={{ padding: '2rem', justifyContent: 'center' }}>
-                            <Typography variant="h5" align="center" gutterBottom fontWeight={'bold'}>
+                            <Typography variant="h5" align="center" padding={5} fontWeight={'bold'}>
                                 Book Now!
                             </Typography>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                                    <Typography variant="body1" gutterBottom fontWeight={'bold'} >
-                                        Select your date
-                                    </Typography>
+                                    
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <DatePicker
                                             name='date'
@@ -104,9 +108,7 @@ function Description() {
                                     )}
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography variant="body1" gutterBottom fontWeight={'bold'} >
-                                        Quantity
-                                    </Typography>
+                                    
                                     <TextField
                                         name='quantity'
                                         label="Quantity"
@@ -127,7 +129,7 @@ function Description() {
                     </Box>
                 </Grid>
             </Grid>
-        </Box>
+        </Container>
     );
 }
 
