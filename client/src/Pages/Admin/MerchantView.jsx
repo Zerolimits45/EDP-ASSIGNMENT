@@ -3,6 +3,7 @@ import { Button } from '@mui/material'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
 import { DataGrid } from '@mui/x-data-grid';
+import http from '../../http'
 
 function RenderButton(props) {
     const { hasFocus, value, user, getUsers } = props;
@@ -35,7 +36,7 @@ function RenderButton(props) {
                 variant="contained"
                 size="small"
                 style={{ backgroundColor: '#6CA0DC' }}
-                LinkComponent={Link} to={`/admin/editmerchant`}
+                LinkComponent={Link} to={`/admin/editmerchant/${user.id}`}
             >
                 Edit
             </Button>
@@ -86,16 +87,35 @@ function RenderButton(props) {
 function MerchantView() {
     const btnstyle = { margin: '30px 0', fontWeight: 'bold', color: 'white', backgroundColor: '#FF4E00' };
 
-    const rows = ""
+    const [userList, setUserList] = useState([]);
+
+    const rows = userList.map((user) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.contact,
+        companyId: user.companyId
+    }));
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'Merchant Name', headerName: 'Name', width: 100 },
+        { field: 'name', headerName: 'Name', width: 100 },
         { field: 'phone', headerName: 'Phone', width: 100 },
         { field: 'email', headerName: 'Email', width: 200 },
-        { field: 'Company ID', headerName: 'Company ID', width: 150 },
-        // { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} getUsers={getUsers} /> }, //change this line
+        { field: 'companyId', headerName: 'Company ID', width: 150 },
+        { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} getUsers={getUsers} /> },
     ];
+
+    const getUsers = () => {
+        http.get(`/AdminUser/allmerchants`).then((res) => {
+            setUserList(res.data);
+            console.log(res.data)
+        });
+    };
+
+    useEffect(() => {
+        getUsers();
+    }, []);
 
     return (
         <>

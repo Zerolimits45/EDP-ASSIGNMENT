@@ -115,7 +115,7 @@ function ProfileRoutes() {
                         <Route path='/viewevents' element={<EventsView />} />
                         <Route path='/viewmerchant' element={<MerchantView />} />
                         <Route path='/addmerchant' element={<AddMerchant />} />
-                        <Route path='/editmerchant' element={<EditMerchant/>} />
+                        <Route path='/editmerchant/:id' element={<EditMerchant/>} />
                     </Routes>
                 </Grid>
             </Grid>
