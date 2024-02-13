@@ -63,6 +63,7 @@ function ChangePassword() {
                 <TextField
                   name="password"
                   label="Old Password"
+                  type='password'
                   fullWidth
                   onChange={formik.handleChange}
                   value={formik.values.password}
@@ -74,6 +75,7 @@ function ChangePassword() {
                 <TextField
                   name="newpassword"
                   label="New Password"
+                  type='password'
                   fullWidth
                   onChange={formik.handleChange}
                   value={formik.values.newpassword}
@@ -85,6 +87,7 @@ function ChangePassword() {
                 <TextField
                   name="confirmpassword"
                   label="Confirm Password"
+                  type='password'
                   fullWidth
                   onChange={formik.handleChange}
                   value={formik.values.confirmpassword}

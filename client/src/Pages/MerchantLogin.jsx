@@ -98,6 +98,7 @@ function MerchantLogin() {
                                 <TextField
                                     name='password'
                                     label="Password"
+                                    type='password'
                                     fullWidth
                                     onChange={formik.handleChange}
                                     value={formik.values.password}

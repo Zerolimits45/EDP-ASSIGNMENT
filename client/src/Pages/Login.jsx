@@ -97,6 +97,7 @@ function SignIn() {
                                 <TextField
                                     name='password'
                                     label="Password"
+                                    type='password'
                                     onChange={formik.handleChange}
                                     value={formik.values.password}
                                     error={formik.touched.password && Boolean(formik.errors.password)}
