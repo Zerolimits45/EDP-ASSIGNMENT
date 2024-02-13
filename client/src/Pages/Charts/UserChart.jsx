@@ -2,66 +2,65 @@ import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import http from '../../http';
 
-function OrdersChart () {
-    const [orderList, setOrderList] = useState([]);
+function UserChart() {
+    const [userList, setUserList] = useState([]);
 
-    const getOrders = () => {
-        http.get(`/Order`).then((res) => {
-            setOrderList(res.data);
-            console.log(res.data)
+    const getUsers = () => {
+        http.get(`/AdminUser/allusers`).then((res) => {
+            setUserList(res.data);
         });
     };
 
     useEffect(() => {
-        getOrders();
+        getUsers();
     }, []);
 
     useEffect(() => {
-        const monthsSet = new Set(orderList.map(order => {
-            const date = new Date(order.createdAt);
+        const monthsSet = new Set(userList.map(user => {
+            const date = new Date(user.createdAt);
             return date.toLocaleString('default', { month: 'short' });
         }));
         
         const months = [...monthsSet];
 
-        const totalPricePerMonth = months.map((month, index) => {
-            const monthOrders = orderList.filter(order => {
-                const date = new Date(order.createdAt);
+        const totalUserPerMonth = months.map((month, index) => {
+            const monthUsers = userList.filter(user => {
+                const date = new Date(user.createdAt);
                 return date.toLocaleString('default', { month: 'short' }) == month;
             });
-
-            const totalForMonth = monthOrders.reduce((total, order) => {
-                return total + order.cartItems.reduce((subtotal, cartItem) => {
-                    return subtotal + cartItem.quantity * cartItem.event.price;
-                }, 0);
+            console.log(monthUsers)
+            const totalForMonth = monthUsers.reduce((total, user) => {
+                return total + 1
             }, 0);
 
             return totalForMonth;
         });
 
+        console.log(totalUserPerMonth)
+
         setOptions(prevOptions => ({
             ...prevOptions,
             labels: months.reverse(),
             title: {
-                text: "$" + totalPricePerMonth.reduce((total, p) => {
-                    return total + p
+                text: totalUserPerMonth.reduce((total, count) => {
+                    return total + count
                 }, 0)
             }
         }));
 
         setSeries([
             {
-                name: 'Total Price',
-                data: totalPricePerMonth.reverse()
+                name: 'Total User',
+                data: totalUserPerMonth.reverse()
             }
         ]);
 
-    }, [orderList]);
+    }, [userList]);
 
     const [options, setOptions] = useState({
         chart: {
-            id: 'sparkline1',
-            group: 'sparklines1',
+            id: 'sparkline2',
+            group: 'sparklines2',
             height: 160,
         },
         stroke: {
@@ -74,7 +73,7 @@ function OrdersChart () {
         yaxis: {
             min: 0,
             title: {
-                text: 'Sales',
+                text: 'Count',
             },
             labels: {
                 show: false, // Hide individual values on the y-axis
@@ -91,8 +90,8 @@ function OrdersChart () {
         },
         colors: ['#008FFB'],
         title: {
-            offsetX: 30,
-            offsetY: 30,
+            offsetX: 20,
+            offsetY: 20,
             style: {
                 fontSize: '24px',
                 cssClass: 'apexcharts-yaxis-title',
@@ -100,9 +99,9 @@ function OrdersChart () {
             }
         },
         subtitle: {
-            text: 'Total Orders',
-            offsetX: 30,
-            offsetY: 60,
+            text: 'Total Users',
+            offsetX: 20,
+            offsetY: 50,
             style: {
                 fontSize: '14px',
                 cssClass: 'apexcharts-yaxis-title',
@@ -118,4 +117,4 @@ function OrdersChart () {
     );
 };
 
-export default OrdersChart;
+export default UserChart;

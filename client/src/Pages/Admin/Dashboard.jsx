@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Typography, Grid, Container, TextField, Box, Button, Card, CardContent } from '@mui/material'
-import OrdersChart from '../Charts/OrdersChart'
+import OrdersChart from '../Charts/OrdersChart';
+import UserChart from '../Charts/UserChart';
 import http from '../../http'
 
 function Dashboard() {
     const itemcolor = { backgroundColor: '#8a8a88' }
-    const [userList, setUserList] = useState([]);
-
-    const getUsers = () => {
-        http.get(`/AdminUser/allusers`).then((res) => {
-            setUserList(res.data);
-        });
-    };
-
-    useEffect(() => {
-        getUsers();
-    }, []);
 
     return (
         <Container maxWidth='xl'>
@@ -36,9 +26,7 @@ function Dashboard() {
                             <Typography variant='h6' color="white" marginBottom={2} align='center'>
                                 Total Customers
                             </Typography>
-                            <Typography variant='h3' color="white" marginBottom={2} align='center'>
-                                {userList.length}
-                            </Typography>
+                            <UserChart />
                         </CardContent>
                     </Card>
                 </Grid>
@@ -46,7 +34,7 @@ function Dashboard() {
                     <Card style={itemcolor}>
                         <CardContent>
                             <Typography variant='h6' color="white" marginBottom={2} align='center'>
-                                Total Merchants
+                                Total Events Created
                             </Typography>
                             <Typography variant='h3' color="white" marginBottom={2} align='center'>
                                 0
