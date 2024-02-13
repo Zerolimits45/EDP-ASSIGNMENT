@@ -66,7 +66,7 @@ function ProfileRoutes() {
                         <Route path="/changepassword" element={<ChangePassword />} />
                         <Route path="/edit/:id" element={<ProfileEdit />} />
                         <Route path="/orders" element={<Purchases />} />
-                        <Route path="/items" element={<Items />} />
+                        <Route path="/items/:id" element={<Items />} />
                     </Routes>
                 </Grid>
             </Grid>
