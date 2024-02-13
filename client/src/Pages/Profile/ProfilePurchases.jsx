@@ -17,35 +17,20 @@ function Purchases() {
           <Card elevation={5}>
             <CardContent>
               <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <Box
-                    component="img"
-                    width="100%"
-                    src="../images/product_test.jpg"
-                    alt="car image">
-                  </Box>
-                </Grid>
-                <Grid item xs={12} md={6} display={'flex'} >
+              <Grid item xs={12} md={6} display={'flex'} >
                   <Box style={{ display: 'flex', flexDirection: 'column' }}>
                     <Typography variant='h5' fontWeight={600}>
-                      Booking Details:
+                      Order ID: 
                     </Typography>
                     <Typography variant='h6'>
-                      Title
+                      Quantity: 2
                     </Typography>
                     <Typography variant='h6'>
-                      Quantity
-                    </Typography>
-                    <Typography variant='h6'>
-                      Date
+                      Date: 12/12/2021
                     </Typography>
                     <Divider style={dividerstyle} />
-                    <Button
-                      variant='contained'
-                      color='btn'
-                      style={btnstyle}
-                    >
-                      Review Experience
+                    <Button style={btnstyle} variant="contained" fullWidth LinkComponent={Link} to='/profile/items'   >
+                      View Details
                     </Button>
                   </Box>
                 </Grid>

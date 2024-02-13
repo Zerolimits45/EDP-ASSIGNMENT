@@ -4,12 +4,13 @@ import { Link, Routes, Route } from 'react-router-dom'
 
 //Pages
 import Profile from './Profile'
-import Purchases from './Purchases';
+import Purchases from './ProfilePurchases';
 import Posts from './Posts';
 import Reviews from './Reviews';
 import ChangePassword from './ChangePassword';
 import ProfileEdit from './ProfileEdit';
 import EditPost from '../EditPost';
+import Items from './ProfileItems';
 
 //icons
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -64,6 +65,8 @@ function ProfileRoutes() {
                         <Route path="/posts" element={<Posts />} />
                         <Route path="/changepassword" element={<ChangePassword />} />
                         <Route path="/edit/:id" element={<ProfileEdit />} />
+                        <Route path="/orders" element={<Purchases />} />
+                        <Route path="/items" element={<Items />} />
                     </Routes>
                 </Grid>
             </Grid>
