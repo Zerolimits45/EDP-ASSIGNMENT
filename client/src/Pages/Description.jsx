@@ -52,7 +52,7 @@ function Description() {
                 <CardMedia
                     component="img"
                     height="500"
-                    image="../images/product_test.jpg"
+                    image={`${import.meta.env.VITE_FILE_BASE_URL}${event.imageFile}`}
                     alt="Product Image"
                 />
             </Card>

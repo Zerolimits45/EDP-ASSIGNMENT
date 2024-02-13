@@ -77,7 +77,7 @@ function Categories() {
                 <Card elevation={5} style={paperStyle}>
                   <CardContent>
                     <Box component="img" width="100%"
-                      src="../images/test.png"
+                      src={`${import.meta.env.VITE_FILE_BASE_URL}${event.imageFile}`}
                       alt="car image">
                     </Box>
                     <Typography style={{ fontWeight: 'bold' }}>
@@ -115,7 +115,7 @@ function Categories() {
                 <Card elevation={5} style={paperStyle}>
                   <CardContent>
                     <Box component="img" width="100%"
-                      src="../images/test.png"
+                      src={`${import.meta.env.VITE_FILE_BASE_URL}${event.imageFile}`}
                       alt="car image">
                     </Box>
                     <Typography style={{ fontWeight: 'bold' }}>
@@ -153,7 +153,7 @@ function Categories() {
                 <Card elevation={5} style={paperStyle}>
                   <CardContent>
                     <Box component="img" width="100%"
-                      src="../images/test.png"
+                      src={`${import.meta.env.VITE_FILE_BASE_URL}${event.imageFile}`}
                       alt="car image">
                     </Box>
                     <Typography style={{ fontWeight: 'bold' }}>
@@ -191,7 +191,7 @@ function Categories() {
                 <Card elevation={5} style={paperStyle}>
                   <CardContent>
                     <Box component="img" width="100%"
-                      src="../images/test.png"
+                      src={`${import.meta.env.VITE_FILE_BASE_URL}${event.imageFile}`}
                       alt="car image">
                     </Box>
                     <Typography style={{ fontWeight: 'bold' }}>
@@ -229,7 +229,7 @@ function Categories() {
                 <Card elevation={5} style={paperStyle}>
                   <CardContent>
                     <Box component="img" width="100%"
-                      src="../images/test.png"
+                      src={`${import.meta.env.VITE_FILE_BASE_URL}${event.imageFile}`}
                       alt="car image">
                     </Box>
                     <Typography style={{ fontWeight: 'bold' }}>

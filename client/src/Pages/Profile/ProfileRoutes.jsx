@@ -23,6 +23,7 @@ import UserContext from '../../contexts/UserContext';
 
 function ProfileRoutes() {
     const { user } = useContext(UserContext)
+    console.log(user)
 
     return (
         <Container maxWidth='xl'>
@@ -38,31 +39,27 @@ function ProfileRoutes() {
                                     <ListItemText primary="Profile" />
                                 </ListItemButton>
                             </ListItem>
-                            {
-                                user.role == "Customer" && (
-                                    <>
-                                        <Divider />
-                                        <ListItem>
-                                            <ListItemIcon>
-                                                <AttachMoneyIcon color='primary' />
-                                            </ListItemIcon>
-                                            <ListItemButton LinkComponent={Link} to='/profile/purchases' >
-                                                <ListItemText primary="My Purchases" />
-                                            </ListItemButton>
-                                        </ListItem>
-                                        <Divider />
-                                        <ListItem>
-                                            <ListItemIcon>
-                                                <LocalPostOfficeIcon color='primary' />
-                                            </ListItemIcon>
-                                            <ListItemButton LinkComponent={Link} to='/profile/posts' >
-                                                <ListItemText primary="My Posts" />
-                                            </ListItemButton>
-                                        </ListItem>
-                                        <Divider />
-                                    </>
-                                )
-                            }
+
+                            <Divider />
+                            <ListItem>
+                                <ListItemIcon>
+                                    <AttachMoneyIcon color='primary' />
+                                </ListItemIcon>
+                                <ListItemButton LinkComponent={Link} to='/profile/purchases' >
+                                    <ListItemText primary="My Purchases" />
+                                </ListItemButton>
+                            </ListItem>
+                            <Divider />
+                            <ListItem>
+                                <ListItemIcon>
+                                    <LocalPostOfficeIcon color='primary' />
+                                </ListItemIcon>
+                                <ListItemButton LinkComponent={Link} to='/profile/posts' >
+                                    <ListItemText primary="My Posts" />
+                                </ListItemButton>
+                            </ListItem>
+                            <Divider />
+
                         </List>
                     </Card>
                 </Grid>

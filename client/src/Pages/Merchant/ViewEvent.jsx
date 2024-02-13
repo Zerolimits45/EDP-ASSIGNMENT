@@ -40,7 +40,7 @@ function ViewEvent() {
                     <CardMedia
                         component="img"
                         height="200"
-                        image="../images/product_test.jpg"
+                        image={`${import.meta.env.VITE_FILE_BASE_URL}${event.imageFile}`}
                         alt="Event Image">
                     </CardMedia>
                     <CardContent>
