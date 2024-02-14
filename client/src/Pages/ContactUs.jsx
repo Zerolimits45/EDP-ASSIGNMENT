@@ -46,7 +46,7 @@ function ContactUs() {
             http.post('/Ticket', data)
                 .then((res) => {
                     console.log(res.data)
-                    navigate("/")
+                    formik.resetForm();
                 })
         },
     });

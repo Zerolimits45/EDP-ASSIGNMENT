@@ -93,7 +93,6 @@ function UserView() {
         name: user.name,
         email: user.email,
         phone: user.contact,
-        address: user.address
     }));
 
     const columns = [
@@ -101,7 +100,6 @@ function UserView() {
         { field: 'name', headerName: 'Name', width: 100 },
         { field: 'phone', headerName: 'Phone', width: 100 },
         { field: 'email', headerName: 'Email', width: 200 },
-        { field: 'address', headerName: 'Address', width: 200 },
         { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton user={params.row} getUsers={getUsers} /> },
     ];
     

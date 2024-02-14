@@ -74,7 +74,7 @@ function PostsView() {
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'title', headerName: 'Title', width: 100 },
+        { field: 'title', headerName: 'Title', width: 200 },
         { field: 'description', headerName: 'Description', width: 300 },
         { field: 'likes', headerName: 'Likes', width: 70 },
         { field: 'createdAt', headerName: 'CreatedAt', width: 100 },

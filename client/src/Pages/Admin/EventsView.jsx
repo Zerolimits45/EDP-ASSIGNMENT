@@ -62,12 +62,12 @@ function Events() {
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 100 },
-        { field: 'name', headerName: 'Title', width: 100 },
-        { field: 'category', headerName: 'Category', width: 150 },
+        { field: 'name', headerName: 'Title', width: 200 },
+        { field: 'category', headerName: 'Category', width: 250 },
         { field: 'startDate', headerName: 'Start Date', width: 150 },
         { field: 'endDate', headerName: 'End Date', width: 150 },
         { field: 'companyId', headerName: 'Created By', width: 100 },
-        { field: 'action', headerName: 'Actions', width: 200, renderCell: (params) => <RenderButton event={params.row} getEvents={getEvents} /> },
+        { field: 'action', headerName: 'Actions', width: 100, renderCell: (params) => <RenderButton event={params.row} getEvents={getEvents} /> },
 
     ];
 

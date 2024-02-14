@@ -41,7 +41,7 @@ function EventChart() {
 
         setOptions(prevOptions => ({
             ...prevOptions,
-            labels: months.reverse(),
+            labels: months,
             title: {
                 text: totalEventPerMonth.reduce((total, count) => {
                     return total + count

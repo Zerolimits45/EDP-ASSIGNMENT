@@ -97,7 +97,7 @@ function OrdersView() {
     const columns = [
         { field: 'id', headerName: 'ID', width: 30 },
         { field: 'status', headerName: 'Status', width: 100 },
-        { field: 'email', headerName: 'User Email', width: 150 },
+        { field: 'email', headerName: 'User Email', width: 200 },
         { field: 'number', headerName: 'No.Of Items', width: 100 },
         { field: 'price', headerName: 'Total Price', width: 100 },
         { field: 'createdAt', headerName: 'CreatedAt', width: 100 },

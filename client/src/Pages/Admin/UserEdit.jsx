@@ -15,7 +15,6 @@ function UserEdit() {
         name: "",
         email: "",
         contact: "",
-        address: ""
     });
 
     useEffect(() => {
@@ -34,13 +33,11 @@ function UserEdit() {
             name: Yup.string().trim().min(5, 'Minimum 5 characters').required('Required'),
             email: Yup.string().trim().email('Invalid email format').required('Required'),
             contact: Yup.string().trim().min(8).max(8).matches(regEx, "Phone is Invalid").required('Required'),
-            address: Yup.string().trim().min(8, 'Minimum 8 characters').required('Required'),
         }),
         onSubmit: (data) => {
             data.name = data.name.trim();
             data.email = data.email.trim();
             data.contact = data.contact.trim();
-            data.address = data.address.trim();
             http.put(`/AdminUser/${id}`, data)
                 .then((res) => {
                     console.log(res.data);
@@ -95,22 +92,11 @@ function UserEdit() {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     label="Phone"
-                                    name="phone"
+                                    name="contact"
                                     value={formik.values.contact}
                                     onChange={formik.handleChange}
                                     error={formik.touched.contact && Boolean(formik.errors.contact)}
                                     helperText={formik.touched.contact && formik.errors.contact}
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={12}>
-                                <TextField
-                                    label="Address"
-                                    name="address"
-                                    value={formik.values.address}
-                                    onChange={formik.handleChange}
-                                    error={formik.touched.address && Boolean(formik.errors.address)}
-                                    helperText={formik.touched.address && formik.errors.address}
                                     fullWidth
                                 />
                             </Grid>
