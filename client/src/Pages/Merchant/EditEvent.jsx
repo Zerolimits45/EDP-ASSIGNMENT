@@ -19,8 +19,8 @@ function CreateEvent() {
     const onFileChange = (e) => {
         let file = e.target.files[0];
         if (file) {
-            if (file.size > 1024 * 1024) {
-                console.log("Maximum file size is 1MB")
+            if (file.size > 10000 * 10000) {
+                console.log("Maximum file size is 10MB")
                 return;
             }
             let formData = new FormData();
