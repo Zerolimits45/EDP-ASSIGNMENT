@@ -68,7 +68,6 @@ function CreateEvent() {
             address: "",
             startdate: "",
             enddate: "",
-            imageFile: "",
         },
         validationSchema: yup.object({
             title: yup.string().trim().min(3).max(100).required(),
@@ -95,7 +94,7 @@ function CreateEvent() {
                 }).catch((error) => {
                     if (error.response && error.response.status === 400) {
                         const errorMessages = error.response.data.errors;
-
+                        console.log(error.response.data)
                         const formikErrors = {};
                         for (const field in errorMessages) {
                             const lowercaseField = field.toLowerCase();

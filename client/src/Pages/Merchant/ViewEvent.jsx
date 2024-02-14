@@ -13,7 +13,7 @@ function ViewEvent() {
     const deletebtnstyle = { fontWeight: 'bold', color: 'white', backgroundColor: 'red' }
     const [eventList, setEventList] = useState([]);
     const getEvents = () => {
-        http.get(`/Event`).then((res) => {
+        http.get(`/Event/Merchant`).then((res) => {
             console.log(res.data)
             setEventList(res.data);
         });
@@ -25,7 +25,10 @@ function ViewEvent() {
 
 
     const [open, setOpen] = useState(false);
-    const handleOpen = () => {
+    const [dId, setId] = useState("");
+    const handleOpen = (eventId) => {
+        setId(eventId);
+        console.log(eventId)
         setOpen(true);
     };
     const handleClose = () => {
@@ -92,42 +95,41 @@ function ViewEvent() {
                             <Grid item xs={12} md={6}>
                                 <Button
                                     variant="contained" style={deletebtnstyle} fullWidth
-                                    onClick={handleOpen}
+                                    onClick={() => handleOpen(event.id)}
                                 >
                                     Delete Event
                                 </Button>
-
-                                <Dialog open={open} onClose={handleClose}>
-                                    <DialogTitle>
-                                        Delete Event
-                                    </DialogTitle>
-                                    <DialogContent>
-                                        <DialogContentText>
-                                            Are you sure you want to delete this Event?
-                                        </DialogContentText>
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button variant="contained" color="inherit"
-                                            onClick={handleClose}>
-                                            Cancel
-                                        </Button>
-                                        <Button variant="contained" color="error"
-                                            onClick={() => {
-                                                http.delete(`/Event/${event.id}`).then((res) => {
-                                                    console.log(res.data)
-                                                    handleClose()
-                                                    getEvents()
-                                                });
-                                            }}>
-                                            Delete
-                                        </Button>
-                                    </DialogActions>
-                                </Dialog>
                             </Grid>
                         </Grid>
                     </CardContent>
                 </Card>
             )}
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>
+                    Delete Event
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to delete this Event?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="contained" color="inherit"
+                        onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button variant="contained" color="error"
+                        onClick={() => {
+                            http.delete(`/Event/${dId}`).then((res) => {
+                                console.log(res.data)
+                                handleClose()
+                                getEvents()
+                            });
+                        }}>
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     )
 }
